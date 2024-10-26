@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+<title>Home</title>
+
+{% endblock %}
+
+{% block body %}
+
+<h1>Welcome {{save}}!</h1>
+
+<br>
+
+<form action="/protected" method="POST">
+  <button value="Log Out" name="Submit">Log Out</button>
+</form><br><br>
+
+{% endblock %}
