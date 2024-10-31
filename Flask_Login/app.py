@@ -23,7 +23,6 @@ class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usernames = db.Column(db.String(100), nullable=False)
     passwords = db.Column(db.String(100), nullable=False)
-    key = db.Column(db.String(100), nullable=False)
 
     def __repr__(self):
         return 'User ' + str(self.id)
@@ -59,26 +58,8 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        letters = string.ascii_letters
-        numbers = string.digits
 
-        a = (numbers[random.randint(0, 9)])
-        b = (letters[random.randint(0, 51)])
-        c = (letters[random.randint(0, 51)])
-        d = (letters[random.randint(0, 51)])
-        e = (numbers[random.randint(0, 9)])
-        f = (letters[random.randint(0, 51)])
-        g = (letters[random.randint(0, 51)])
-        h = (letters[random.randint(0, 51)])
-        i = (letters[random.randint(0, 51)])
-        j = (numbers[random.randint(0, 9)])
-        k = (letters[random.randint(0, 51)])
-        o = (letters[random.randint(0, 51)])
-        m = (numbers[random.randint(0, 9)])
-        n = (numbers[random.randint(0, 9)])
-
-        update = str(a + b + c + d + e + f + g + h + i + j + k + m + n + o)
-        signin = LoginScreen(usernames=username, passwords=password, key=update)
+        signin = LoginScreen(usernames=username, passwords=password)
         if bool(LoginScreen.query.filter_by(usernames=username).first()):
             return redirect('/LOL')
         else:
@@ -86,8 +67,6 @@ def signup():
             db.session.commit()
             id_checker = LoginScreen.query.filter_by(usernames=username).first()
             id_checker = id_checker.id
-            key_checker = LoginScreen.query.filter_by(usernames=username).first()
-            key_checker = key_checker.key
             user = User()
             user.id = username
             flask_login.login_user(user)
@@ -102,25 +81,8 @@ def lmao():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        letters = string.ascii_letters
-        numbers = string.digits
-
-        a = (numbers[random.randint(0, 9)])
-        b = (letters[random.randint(0, 51)])
-        c = (letters[random.randint(0, 51)])
-        d = (letters[random.randint(0, 51)])
-        e = (numbers[random.randint(0, 9)])
-        f = (letters[random.randint(0, 51)])
-        g = (letters[random.randint(0, 51)])
-        h = (letters[random.randint(0, 51)])
-        i = (letters[random.randint(0, 51)])
-        j = (numbers[random.randint(0, 9)])
-        k = (letters[random.randint(0, 51)])
-        o = (letters[random.randint(0, 51)])
-        m = (numbers[random.randint(0, 9)])
-        n = (numbers[random.randint(0, 9)])
-        update = str(a + b + c + d + e + f + g + h + i + j + k + m + n + o)
-        signin = LoginScreen(usernames=username, passwords=password, key=update)
+        
+        signin = LoginScreen(usernames=username, passwords=password)
         if bool(LoginScreen.query.filter_by(usernames=username).first()):
             return redirect('/LOL')
         else:
@@ -128,8 +90,6 @@ def lmao():
             db.session.commit()
             id_checker = LoginScreen.query.filter_by(usernames=username).first()
             id_checker = id_checker.id
-            key_checker = LoginScreen.query.filter_by(usernames=username).first()
-            key_checker = key_checker.key
             user = User()
             user.id = username
             flask_login.login_user(user)
@@ -147,8 +107,6 @@ def login():
         if bool(LoginScreen.query.filter_by(usernames=username).first()):
             id_checker = LoginScreen.query.filter_by(usernames=username).first()
             id_checker = id_checker.id
-            key_checker = LoginScreen.query.filter_by(usernames=username).first()
-            key_checker = key_checker.key
             id_tester = LoginScreen.query.get(id_checker).passwords
             if password == id_tester:
                 user = User()
@@ -172,8 +130,6 @@ def incorrect():
         if bool(LoginScreen.query.filter_by(usernames=username).first()):
             id_checker = LoginScreen.query.filter_by(usernames=username).first()
             id_checker = id_checker.id
-            key_checker = LoginScreen.query.filter_by(usernames=username).first()
-            key_checker = key_checker.key
             id_tester = LoginScreen.query.get(id_checker).passwords
             if password == id_tester:
                 user = User()
