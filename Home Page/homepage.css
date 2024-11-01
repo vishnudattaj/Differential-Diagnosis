@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-image: linear-gradient(to bottom right, rgba(215, 212, 212, 0.863), rgb(109, 109, 109));
 }
 
 form {
@@ -14,9 +15,14 @@ form {
     width: 100%;
 }
 
+
+
 label, input, textarea, button {
     width: 100%;
     margin-top: 10px;
+}
+ html, body {
+    height: 100%; 
 }
 
 button {
