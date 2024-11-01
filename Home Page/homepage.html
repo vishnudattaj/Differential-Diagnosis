@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker</title>
+    <link rel="stylesheet" href="homepage.css">
+</head>
+<body>
+    <h2>Symptom Checker</h2>
+    <form id="symptomForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="symptoms">Describe Your Symptoms:</label>
+        <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
+
+        <label>Select any relevant existing conditions:</label>
+        <input type="checkbox" id="diabetes" name="conditions" value="Diabetes">
+        <label for="diabetes">Diabetes</label>
+        <input type="checkbox" id="hypertension" name="conditions" value="Hypertension">
+        <label for="hypertension">Hypertension</label>
+        <input type="checkbox" id="asthma" name="conditions" value="Asthma">
+        <label for="asthma">Asthma</label>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        document.getElementById('symptomForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Form submitted successfully!');
+            // code here to send stuff to server
+        });
+    </script>
+</body>
+</html>

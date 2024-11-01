@@ -1,0 +1,25 @@
+body {
+    font-family: Poppins, sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label, input, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+button {
+    margin-top: 15px;
+    align-self: center;
+}
