@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
-import string
-import random
 
 app = Flask(__name__)
 app.config['RECAPTCHA_SITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
