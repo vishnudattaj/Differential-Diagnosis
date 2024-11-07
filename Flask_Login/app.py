@@ -108,9 +108,9 @@ def protected():
         if request.form['Submit'] == "Log Out":
             return redirect(url_for('logout'))
         else:
-            return render_template('FINAL.html', save=flask_login.current_user.id)
+            return render_template('homepage.html', save=flask_login.current_user.id)
     else:
-        return render_template('FINAL.html', save=flask_login.current_user.id)
+        return render_template('homepage.html', save=flask_login.current_user.id)
 
 
 if __name__ == "__main__":
