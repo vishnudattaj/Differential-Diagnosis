@@ -1,0 +1,31 @@
+body {
+    font-family: Poppins, sans-serif;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: linear-gradient(to bottom right, rgba(215, 212, 212, 0.863), rgb(109, 109, 109));
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
+
+label, input, textarea, button {
+    width: 100%;
+    margin-top: 10px;
+}
+ html, body {
+    height: 100%; 
+}
+
+button {
+    margin-top: 15px;
+    align-self: center;
+}
