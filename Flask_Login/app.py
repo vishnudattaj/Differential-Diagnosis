@@ -51,52 +51,6 @@ def logout():
     return 'Logged out'
 
 
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-
-        signin = LoginScreen(usernames=username, passwords=password)
-        if bool(LoginScreen.query.filter_by(usernames=username).first()):
-            return redirect('/LOL')
-        else:
-            db.session.add(signin)
-            db.session.commit()
-            id_checker = LoginScreen.query.filter_by(usernames=username).first()
-            id_checker = id_checker.id
-            user = User()
-            user.id = username
-            flask_login.login_user(user)
-            return redirect(url_for('protected'))
-
-    else:
-        return render_template('signup.html')
-
-
-@app.route('/LOL', methods=['GET', 'POST'])
-def lmao():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        
-        signin = LoginScreen(usernames=username, passwords=password)
-        if bool(LoginScreen.query.filter_by(usernames=username).first()):
-            return redirect('/LOL')
-        else:
-            db.session.add(signin)
-            db.session.commit()
-            id_checker = LoginScreen.query.filter_by(usernames=username).first()
-            id_checker = id_checker.id
-            user = User()
-            user.id = username
-            flask_login.login_user(user)
-            return redirect(url_for('protected'))
-
-    else:
-        return render_template('LMAO.html')
-
-
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -113,34 +67,39 @@ def login():
                 return redirect(url_for('protected'))
 
             else:
-                return redirect('/incorrect')
+                return render_template('wrongCredentials.html')
         else:
             return render_template('login.html')
     else:
         return render_template('login.html')
 
 
-@app.route('/incorrect', methods=['GET', 'POST'])
-def incorrect():
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        if bool(LoginScreen.query.filter_by(usernames=username).first()):
-            id_checker = LoginScreen.query.filter_by(usernames=username).first()
-            id_checker = id_checker.id
-            id_tester = LoginScreen.query.get(id_checker).passwords
-            if password == id_tester:
+        confirm = request.form['confirmpassword']
+        
+        if (password == confirm):
+            signin = LoginScreen(usernames=username, passwords=password)
+            if bool(LoginScreen.query.filter_by(usernames=username).first()):
+                return render_template('existingUser.html')
+            else:
+                db.session.add(signin)
+                db.session.commit()
+                id_checker = LoginScreen.query.filter_by(usernames=username).first()
+                id_checker = id_checker.id
                 user = User()
                 user.id = username
                 flask_login.login_user(user)
                 return redirect(url_for('protected'))
-            else:
-                return redirect('/incorrect')
         else:
-            return redirect('/incorrect')
-    else:
-        return render_template('incorrect.html')
+            return render_template('confirmPassword.html')
+        
 
+    else:
+        return render_template('signup.html')
 
 @app.route('/protected', methods=['GET', 'POST'])
 @flask_login.login_required
