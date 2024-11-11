@@ -40,8 +40,8 @@
               </div>
 
               <div class="form-outline mb-4">
-                <label style="float: left" class="form-label" for="typePasswordX-2">Password</label>
-                &nbsp<input style="border: 1px solid #000000" type="password" id="typePasswordX-2" name="confirmpassword" class="form-control form-control-lg" />
+                <label style="float: left" class="form-label" for="typePasswordX-3">Confirm Password</label>
+                &nbsp<input style="border: 1px solid #000000" type="password" id="typePasswordX-3" name="confirmpassword" class="form-control form-control-lg" />
               </div>
 
               <!-- Checkbox -->
@@ -50,10 +50,13 @@
               <script type = "text/javascript">
                function myFunction() {
                 var x = document.getElementById("typePasswordX-2");
+                var y = document.getElementById("typePasswordX-3");
                 if (x.type === "password") {
                   x.type = "text";
+                  y.type = "text";
                 } else {
                   x.type = "password";
+                  y.type = "password";
                 }
               }
               </script>
