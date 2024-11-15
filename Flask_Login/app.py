@@ -69,7 +69,7 @@ def login():
             else:
                 return render_template('wrongCredentials.html')
         else:
-            return render_template('login.html')
+            return render_template('wrongCredentials.html')
     else:
         return render_template('login.html')
 
