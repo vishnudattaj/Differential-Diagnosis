@@ -4,37 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Symptom Checker</title>
-    <link rel="stylesheet" href="/static/css/homepage.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
     <h1>Welcome {{save}}!</h1>
     <h2>Symptom Checker</h2>
-    <form id="symptomForm">
+    <form id="symptomForm" action="processform.php" method = "post">
 
         <label for="symptoms">Describe Your Symptoms:</label>
         <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
 
-        <label>Select any relevant existing conditions:</label>
+       <div>  <label>Select any relevant existing conditions:</label> </div> 
         <input type="checkbox" id="diabetes" name="diabetes" value="diabetes">
         <label for="diabetes">Diabetes</label>
+        <br>
         <input type="checkbox" id="hypertension" name="hypertension" value="hypertension">
         <label for="hypertension">Hypertension</label>
+        <br>
         <input type="checkbox" id="asthma" name="asthma" value="asthma">
         <label for="asthma">Asthma</label>
-
-        <button type="submit">Submit</button>
+<br>
+        <button type="submit">send</button>
     </form>
 
     <form action="/protected" method="POST">
         <button value="Log Out" name="Submit">Log Out</button>
       </form><br><br>
 
-    <script>
-        document.getElementById('symptomForm').addEventListener('submit', function(event) {
+    <script type="text/javascript"k>
+        function myFunc(event) {
             event.preventDefault();
-            alert('Form submitted successfully!');
-            // code here to send stuff to server
-        });
+
+            var symptoms = document.getElementById("full_name").value;
+            var diabetes = document.getElementById("diabetes").value;
+            var hypertension = document.getElementById("hypertension").value;
+            var asthma = document.getElementById("hypertension").value;
+        }
     </script>
 </body>
 </html>
