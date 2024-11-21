@@ -17,6 +17,7 @@ login_manager.init_app(app)
 class User(flask_login.UserMixin):
     pass
 
+out = subprocess.call(["php", "/templates/processform.php"], stdout=subprocess.PIPE)
 
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -113,6 +114,8 @@ def protected():
     else:
         return render_template('homepage.html', save=flask_login.current_user.id)
 
-
+@app.route('/processform.php', methods=['GET', 'POST'])
+def php():
+    return out.stdout
 if __name__ == "__main__":
     app.run(debug=False)
