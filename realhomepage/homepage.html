@@ -12,12 +12,13 @@
     <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <img class="logo" src="/realhomepage/Differential Diagnosis Logo.jpg " alt="Logo">
+    <img class="logo" src="/realhomepage/Differential Diagnosis Logo.jpg" alt="Logo">
     <div class="search-box">
         <div class="row">
             <input type="text" id="input-box" placeholder="Type Symptoms"
             autocomplete ="off">
-            <button><i class="fa-solid fa-plus"></i></button>
+            <button id="add-button"><i id="plus-icon" class="fa-solid fa-plus"></i></button>
+
         </div>
         <div class="result-box">
         </div>
@@ -26,8 +27,14 @@
         <div class="banana">
             <h4>
                 Your Symptoms
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
             </h4>
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div>
+                <ul id="listofsymptoms">
+
+
+                </ul> 
+            </div>
         </div>
     </div>
     <script src="autocomplete.js"></script>

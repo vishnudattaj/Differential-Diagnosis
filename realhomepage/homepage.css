@@ -34,14 +34,17 @@ body {
     padding: 10px 20px;
 }
 button{
-    background: transparent;
+    background: #a5083b;
     border:0;
     outline:0;
+    padding: 15px 40px;
+    border-radius: 35px;
+
 
 }
-button .fa-solid{
-    width:25px;
-    color:#555;
+button .fa-solid {
+    width: 35px;
+    color:white;
     font-size:22px;
     cursor:pointer;
 
@@ -85,9 +88,9 @@ input{
     font-size: 30px;
     text-align: center;
     color:#555;
-    align-items: right;
+    align-items: center;
     width: 400px;
-    height: 700px;
+   display:flex;
     background: white ;
     border-radius: 30px;
     position: absolute;
@@ -95,4 +98,25 @@ input{
     right: 40px;
 
 
+}
+.symptoms-list ul{
+    list-style:none;
+    font-size: 20px;
+    padding: 12px 8px 12px 50px;
+    margin-bottom:10px;
+    position:relative;
+
+
+}
+
+
+
+.symptoms-list ul{
+    margin-bottom: 10px; 
+    padding: 10px; 
+    background-color: #d6e5f9; /* Optional: Give items a background color */
+    border-radius: 35px; /* Round the corners slightly */
+    border: 1px solid black; /* Optional: Add a light border */
+    cursor: pointer; 
+    align-items: center;
 }
