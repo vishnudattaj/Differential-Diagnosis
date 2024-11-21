@@ -1,4 +1,3 @@
-
 let availableKeywords = [
     'Fever',
     'Chills',
@@ -45,6 +44,8 @@ let availableKeywords = [
 
 const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
+const addSymptom = document.getElementById("plus-icon");
+const symptomsList = document.getElementById("listofsymptoms");
 inputBox.onkeyup = function(){
     let result = [];
     let input = inputBox.value;
@@ -68,5 +69,13 @@ function display(result){
 }
 function selectInput(list){
     inputBox.value = list.innerHTML;
-    resultsBox.innerHTML = '';
+    resultsBox.innerHTML = '';   
+}
+
+addSymptom.onclick = function(){
+    let symptomToAdd = document.createElement("symptomToAdd");
+    symptomToAdd.innerHTML = inputBox.value;
+    symptomsList.appendChild(symptomToAdd);
+    inputBox.value = "";
+
 }
