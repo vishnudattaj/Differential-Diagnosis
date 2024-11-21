@@ -11,7 +11,7 @@ let availableKeywords = [
     'Swollen lymph nodes',
     'Dry Cough',
     'Productive Cough',
-    'Shorness of Breath',
+    'Shortness of Breath',
     'Chest Pain',
     'Runny Nose',
     'Sore Throat',
