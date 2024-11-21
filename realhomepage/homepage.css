@@ -114,9 +114,8 @@ input{
 .symptoms-list ul{
     margin-bottom: 10px; 
     padding: 10px; 
-    background-color: #d6e5f9; /* Optional: Give items a background color */
-    border-radius: 35px; /* Round the corners slightly */
-    border: 1px solid black; /* Optional: Add a light border */
+    background-color: #d6e5f9;
+    border-radius: 35px; 
     cursor: pointer; 
     align-items: center;
 }
