@@ -9,7 +9,7 @@
 <body>
     <h1>Welcome {{save}}!</h1>
     <h2>Symptom Checker</h2>
-    <form id="symptomForm" action="processform.php" method = "post">
+    <form id="symptomForm" action="/protected" method = "post">
 
         <label for="symptoms">Describe Your Symptoms:</label>
         <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
@@ -24,7 +24,8 @@
         <input type="checkbox" id="asthma" name="asthma" value="asthma">
         <label for="asthma">Asthma</label>
 <br>
-        <button type="submit">Submit</button>
+        
+        <button value="symptomSubmit" name="symptomSubmit">Submit</button>
 
         <label>
             <input type="checkbox" name="terms">
@@ -36,7 +37,7 @@
         <button value="Log Out" name="Submit">Log Out</button>
       </form><br><br>
 
-    <script type="text/javascript"k>
+    <script type="text/javascript">
         function myFunc(event) {
             event.preventDefault();
 
