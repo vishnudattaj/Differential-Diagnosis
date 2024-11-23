@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
-import subprocess
-import urllib.parse
 
 app = Flask(__name__)
 app.config['RECAPTCHA_SITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -18,7 +16,6 @@ login_manager.init_app(app)
 class User(flask_login.UserMixin):
     pass
 
-out = subprocess.call(["php", "/templates/processform.php"], stdout=subprocess.PIPE)
 
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -118,13 +115,6 @@ def protected():
             if not terms: 
                 return "Terms must be accepted",400
             
-            process = subprocess.Popen( 
-                ["php","Flask_Login/templates/processform.php"],
-                stdin=subprocess.PIPE,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True)
-            
             data = {
                 'symptoms': symptoms,
                 'diabetes': diabetes,
@@ -132,19 +122,8 @@ def protected():
                 'asthma': asthma
             }
 
-            filtered_data = {}
-            for key in data:
-                if data[key] != None:
-                    filtered_data.update({key: data[key]})
-            
-            print(filtered_data)
-            filtered_encoded_data = urllib.parse.urlencode(filtered_data)
-
-
-            stdout, stderr = process.communicate(input=filtered_encoded_data)
-            if stderr: 
-                return f"Error: {stderr}", 500
-            print(stdout)
+            print(data)
+    
             return render_template('homepage.html', save=flask_login.current_user.id)
         if request.form['Submit'] == "Log Out":
             return redirect(url_for('logout'))
@@ -152,10 +131,6 @@ def protected():
             return render_template('homepage.html', save=flask_login.current_user.id)
     else:
         return render_template('homepage.html', save=flask_login.current_user.id)
-
-@app.route('/processform.php', methods=['GET', 'POST'])
-def php():
-    return out.stdout
+    
 if __name__ == "__main__":
-    subprocess.Popen('php -S localhost:9003 -t Flask_Login/templates', shell=True)
     app.run(debug=False)
