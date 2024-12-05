@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
-import subprocess
 
 app = Flask(__name__)
 app.config['RECAPTCHA_SITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -106,13 +105,32 @@ def signup():
 @flask_login.login_required
 def protected():
     if request.method == 'POST':
-        if request.form['Submit'] == "Log Out":
-            return redirect(url_for('logout'))
-        else:
+        action = request.form.get('action')
+        if action == "symptomSubmit":
+            symptoms = request.form['symptoms'] if request.form['symptoms'] != '' else None
+            diabetes = 'diabetes' if request.form.get('diabetes') else None
+            hypertension = 'hypertension' if request.form.get('hypertension') else None
+            asthma = 'asthma' if request.form.get('asthma') else None
+            terms = 'terms' if request.form.get('terms') else None
+
+            if not terms: 
+                return "Terms must be accepted",400
+            
+            data = {
+                'symptoms': symptoms,
+                'diabetes': diabetes,
+                'hypertension': hypertension,
+                'asthma': asthma
+            }
+
+            print(data)
+
             return render_template('homepage.html', save=flask_login.current_user.id)
+        
+        if action == "logOut":
+            return redirect(url_for('logout'))
     else:
         return render_template('homepage.html', save=flask_login.current_user.id)
-
-
+    
 if __name__ == "__main__":
     app.run(debug=False)
