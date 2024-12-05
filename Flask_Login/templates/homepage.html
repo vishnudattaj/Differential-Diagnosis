@@ -9,7 +9,7 @@
 <body>
     <h1>Welcome {{save}}!</h1>
     <h2>Symptom Checker</h2>
-    <form id="symptomForm" action="/protected" method = "post">
+    <form id="symptomForm" action="/protected" method = "POST">
 
         <label for="symptoms">Describe Your Symptoms:</label>
         <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
@@ -24,7 +24,8 @@
         <input type="checkbox" id="asthma" name="asthma" value="asthma">
         <label for="asthma">Asthma</label>
 <br>
-        
+
+        <input type="hidden" name="action" value="symptomSubmit">
         <button value="symptomSubmit" name="symptomSubmit">Submit</button>
 
         <label>
@@ -33,9 +34,10 @@
         </label>
     </form>
 
-    <form action="/protected" method="POST">
-        <button value="Log Out" name="Submit">Log Out</button>
-      </form><br><br>
+    <form id="logOut" action="/protected" method="POST">
+        <input type="hidden" name="action" value="logOut">
+        <button value="logOut" name="logOut">Log Out</button>
+    </form>
 
     <script type="text/javascript">
         function myFunc(event) {

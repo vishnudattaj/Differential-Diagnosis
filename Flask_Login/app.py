@@ -105,7 +105,8 @@ def signup():
 @flask_login.login_required
 def protected():
     if request.method == 'POST':
-        if request.form['symptomSubmit'] == "symptomSubmit":
+        action = request.form.get('action')
+        if action == "symptomSubmit":
             symptoms = request.form['symptoms'] if request.form['symptoms'] != '' else None
             diabetes = 'diabetes' if request.form.get('diabetes') else None
             hypertension = 'hypertension' if request.form.get('hypertension') else None
@@ -123,12 +124,11 @@ def protected():
             }
 
             print(data)
-    
+
             return render_template('homepage.html', save=flask_login.current_user.id)
-        if request.form['Submit'] == "Log Out":
+        
+        if action == "logOut":
             return redirect(url_for('logout'))
-        else:
-            return render_template('homepage.html', save=flask_login.current_user.id)
     else:
         return render_template('homepage.html', save=flask_login.current_user.id)
     
