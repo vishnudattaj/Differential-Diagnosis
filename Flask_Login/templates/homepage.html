@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+{% extends "base.html"}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Symptom Checker</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
+
+{% block content}
 <body>
     <h1>Welcome {{save}}!</h1>
     <h2>Symptom Checker</h2>
@@ -38,7 +41,7 @@
         <input type="hidden" name="action" value="logOut">
         <button value="logOut" name="logOut">Log Out</button>
     </form>
-
+{% endblock %}
     <script type="text/javascript">
         function myFunc(event) {
             event.preventDefault();

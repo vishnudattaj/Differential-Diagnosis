@@ -29,6 +29,28 @@ class LoginScreen(db.Model):
 db.create_all()
 db.session.commit()
 
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        if bool(LoginScreen.query.filter_by(usernames=username).first()):
+            id_checker = LoginScreen.query.filter_by(usernames=username).first()
+            id_checker = id_checker.id
+            id_tester = LoginScreen.query.get(id_checker).passwords
+            if password == id_tester:
+                user = User()
+                user.id = username
+                flask_login.login_user(user)
+                return redirect(url_for('protected'))
+
+            else:
+                return render_template('wrongCredentials.html')
+        else:
+            return render_template('wrongCredentials.html')
+    else:
+        return render_template('login.html')
+
 
 @login_manager.unauthorized_handler
 def unauthorized_handler():
@@ -51,27 +73,6 @@ def logout():
     return 'Logged out'
 
 
-@app.route('/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
-        if bool(LoginScreen.query.filter_by(usernames=username).first()):
-            id_checker = LoginScreen.query.filter_by(usernames=username).first()
-            id_checker = id_checker.id
-            id_tester = LoginScreen.query.get(id_checker).passwords
-            if password == id_tester:
-                user = User()
-                user.id = username
-                flask_login.login_user(user)
-                return redirect(url_for('protected'))
-
-            else:
-                return render_template('wrongCredentials.html')
-        else:
-            return render_template('wrongCredentials.html')
-    else:
-        return render_template('login.html')
 
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -135,6 +136,7 @@ def protected():
 if __name__ == "__main__":
     app.run(debug=False)
 
+#bro what the fuck is going on i have no idea what I'm doing
 class SymptomEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(100), nullable=False)  # Store the username (or a user ID)
@@ -163,7 +165,6 @@ def protected():
             if not terms:
                 return "Terms must be accepted", 400
 
-            # Store data in the database
             new_entry = SymptomEntry(
                 user_id=flask_login.current_user.id,
                 symptoms=symptoms,
@@ -180,4 +181,4 @@ def protected():
             return redirect(url_for('logout'))
 
     return render_template('homepage.html', save=flask_login.current_user.id)
-
+[]
