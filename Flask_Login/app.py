@@ -134,3 +134,50 @@ def protected():
     
 if __name__ == "__main__":
     app.run(debug=False)
+
+class SymptomEntry(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.String(100), nullable=False)  # Store the username (or a user ID)
+    symptoms = db.Column(db.String(500), nullable=False)
+    diabetes = db.Column(db.Boolean, default=False)
+    hypertension = db.Column(db.Boolean, default=False)
+    asthma = db.Column(db.Boolean, default=False)
+
+
+with app.app_context():
+    db.create_all()
+
+@app.route('/protected', methods=['GET', 'POST'])
+@flask_login.login_required
+def protected():
+    if request.method == 'POST':
+        action = request.form.get('action')
+
+        if action == "symptomSubmit":
+            symptoms = request.form['symptoms'] if request.form['symptoms'] else None
+            diabetes = bool(request.form.get('diabetes'))
+            hypertension = bool(request.form.get('hypertension'))
+            asthma = bool(request.form.get('asthma'))
+            terms = request.form.get('terms')
+
+            if not terms:
+                return "Terms must be accepted", 400
+
+            # Store data in the database
+            new_entry = SymptomEntry(
+                user_id=flask_login.current_user.id,
+                symptoms=symptoms,
+                diabetes=diabetes,
+                hypertension=hypertension,
+                asthma=asthma
+            )
+            db.session.add(new_entry)
+            db.session.commit()
+
+            return render_template('homepage.html', save=flask_login.current_user.id)
+
+        if action == "logOut":
+            return redirect(url_for('logout'))
+
+    return render_template('homepage.html', save=flask_login.current_user.id)
+
