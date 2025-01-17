@@ -10,7 +10,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #d6e5f9;
+    background-color:white;
     height:100%;
     width: 100%;
 }
@@ -42,7 +42,6 @@ button{
     outline:0;
     padding: 15px 40px;
     border-radius: 35px;
-
 
 }
 button .fa-solid {
@@ -117,25 +116,66 @@ input{
 .header {
     min-height: 1080px;
     width: 1900px;
-    background-image: linear-gradient(rgba(153, 169, 228, 0.7), rgba(108, 179, 238, 0.7)), url('/realhomepage/diagnosisbackground.jpg'); /* Ensure correct path */
     background-position: center;
     background-size: cover;
+    background-image: linear-gradient(to bottom,#6998f0 , #a5d8f7 );
     position: relative;
+    justify-content: space-between;
+    align-items: center;
+    transition:0.5s;
+
 }
 nav{
     display: flex;
-    padding: 2% 2%;
     justify-content: space-between;
     align-items: center;
+    z-index:100000;
+    margin:1.5%;
+    height:80px;
+    background-color: #34495e;
+    border-radius: 50px;
+    position: fixed;
+    top:0;
+    width:95%;
+    padding: 0 20px;
+    transition: 0.5s;
+
 }
 
-nav img{
-    width: 400px;
+nav.sticky
+{
+    background:rgba(52, 73, 94, 0.8);
+    margin:0%;
+    width:98%;
+    border-radius:0px;
+
 }
+
+@keyframes thump {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.2);
+    }
+}
+
+.transparentLogo {
+    height: 150px;
+    transition: transform 1s;
+    z-index: 1000000000;
+}
+
+.transparentLogo:hover {
+    animation: thump 0.5s infinite;
+}
+
 .nav-links
 {
     flex:1;
     text-align: right;
+    align-items: center;
+    justify-content: center;
 }
 .nav-links ul li{
     list-style:none;
@@ -147,16 +187,20 @@ nav img{
 .nav-links ul li a{
     color:#fff;
     text-decoration:none;
-    font-size:13px;
+    font-size:20px;
+    margin: 0 15px;
     font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-weight: bold;
     font-style: normal;
+    z-index:1000000;
+    transition: transform 2s;
 }
+
 .nav-links ul li::after{
     content:'';
     width:0%;
     height:2px;
-    background: #f44336;
+    background: #fa9696;
     display: block;
     margin:auto;
     transition:0.5s;
@@ -164,27 +208,166 @@ nav img{
 .nav-links ul li:hover::after{
     width:100%;
 }
+.nav-links ul li:hover a{
+    color:#fa9696;
+    transition:0.5s;
+}
+
+
 .text-box{
     width:90%;
     color:white;
     position:absolute;
-    top:50%;
+    top:40%;
     left:50%;
     transform: translate(-50%,-50%);
     text-align:center;
-}
-
-.text-box h1{
-    font-size:10px;
+    font-size:75px;
     color:white;
     font-family: "Poppins", sans-serif;
-    font-weight: 700;
+    font-weight: bold;
     font-style: normal;
+    margin-top:1px;
+    margin-bottom:1px;
+    transition: transform 2s, background 0.5s;
 }
-
 
 .text-box p{
-    margin:10px 0 40px;
-    font-size: 20px;
+    margin: 0px 0 5px;
+    font-size: 30px;
     color: white;
+    font-weight:400;
 }
+.Front-button{
+    color:white;
+    font-size:25px;
+    text-align: center;
+    align-items: center;
+    font-weight:bold;
+    width:25.5%;
+    position:absolute;
+    left:635px;
+    background-image:linear-gradient(to right,#fa9696,#f3a3f9 );
+    top:180px;
+    transition: transform 1s;
+}
+.health-icons {
+    z-index: -1; 
+}
+
+.Front-button:hover {
+    animation: thump 1s infinite;
+}
+
+
+.fa-solid.fa-virus-covid {
+    font-size: 32px; 
+    color: #fa9696;
+    animation: jumping 13.5s infinite ease-in-out;
+    position: absolute;
+    left:6.25%;
+}
+
+.fa-solid.fa-user-doctor {
+    font-size: 32px; 
+    color: #f3a3f9;
+    animation: jumping 15s infinite ease-in-out;
+    position: absolute;
+    left:13.5%;
+}
+
+.fa-solid.fa-staff-snake {
+    font-size: 32px; 
+    color: #ff6c6c;
+    animation: jumping 11.5s infinite ease-in-out;
+    position: absolute;
+    left:19.75%;
+}
+
+
+
+.fa-solid.fa-brain {
+    font-size: 32px; 
+    color: #3e5efe;
+    animation: jumping 20s infinite ease-in-out;
+    position: absolute;
+    left:32.5%;
+}
+
+
+
+.fa-solid.fa-tablets {
+    font-size: 32px; 
+    color: #3ec4fe;
+    animation: jumping 12.5s infinite ease-in-out;
+    position: absolute;
+    left:45%;
+}
+
+
+.fa-solid.fa-vial {
+    font-size: 32px; 
+    color: #3e5efe;
+    animation: jumping 16s infinite ease-in-out;
+    position: absolute;
+    left:57.5%;
+}
+
+.fa-solid.fa-thermometer {
+    font-size: 32px; 
+    color:  #fe4a3e;
+    animation: jumping 12s infinite ease-in-out;
+    position: absolute;
+    left:63.75%;
+}
+
+.fa-solid.fa-syringe {
+    font-size: 32px; 
+    color: #f3a3f9;
+    animation: jumping 14s infinite ease-in-out;
+    position: absolute;
+    left:70%;
+}
+
+.fa-solid.fa-lungs {
+    font-size: 32px; 
+    color: #fe9e3e;
+    animation: jumping 20s infinite ease-in-out;
+    position: absolute;
+    left:76.25%;
+}
+
+.fa-solid.fa-heart-pulse {
+    font-size: 32px; 
+    color: #fe4a3e;
+    animation: jumping 10.5s infinite ease-in-out;
+    position: absolute;
+    left:82.5%;
+}
+
+.fa-solid.fa-capsules {
+    font-size: 32px; 
+    color: #f3a3f9;
+    animation: jumping 13s infinite ease-in-out;
+    position: absolute;
+    left:88.75%;
+}
+
+.fa-solid.fa-bandage {
+    font-size: 32px; 
+    color: #3e58fe;
+    animation: jumping 14.5s infinite ease-in-out;
+    position: absolute;
+    left:93%;
+}
+
+@keyframes jumping {
+    0% {
+        transform: translateY(100vh) scale(0);
+    }
+    100% {
+        transform: translateY(-10vh) scale(2.5);
+    }
+}
+
+
