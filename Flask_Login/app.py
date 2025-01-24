@@ -132,9 +132,6 @@ def protected():
             return redirect(url_for('logout'))
     else:
         return render_template('homepage.html', save=flask_login.current_user.id)
-    
-if __name__ == "__main__":
-    app.run(debug=False)
 
 #bro what the fuck is going on i have no idea what I'm doing
 class SymptomEntry(db.Model):
@@ -181,4 +178,7 @@ def protected():
             return redirect(url_for('logout'))
 
     return render_template('homepage.html', save=flask_login.current_user.id)
-[]
+    
+if __name__ == "__main__":
+    app.run(debug=False)
+    
