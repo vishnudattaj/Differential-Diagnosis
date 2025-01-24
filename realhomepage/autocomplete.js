@@ -44,38 +44,51 @@ let availableKeywords = [
 
 const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
-const addSymptom = document.getElementById("plus-icon");
+const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
-inputBox.onkeyup = function(){
+
+inputBox.onkeyup = function() {
     let result = [];
     let input = inputBox.value;
-    if(input.length){
-        result = availableKeywords.filter((keyword)=>{
-           return keyword.toLowerCase().includes(input.toLowerCase());
+    if (input.length) {
+        result = availableKeywords.filter((keyword) => {
+            return keyword.toLowerCase().includes(input.toLowerCase());
         });
         console.log(result);
-
     }
     display(result);
-    if(!result.length){
-        resultBox.innerHTML = '';
+    if (!result.length) {
+        resultsBox.innerHTML = '';
     }
-}
-function display(result){
-    const content = result.map((list)=>{
+};
+
+function display(result) {
+    const content = result.map((list) => {
         return "<li onclick=selectInput(this)>" + list + "<li>";
     });
     resultsBox.innerHTML = "<ul>" + content.join('') + "<ul>";
 }
-function selectInput(list){
+
+function selectInput(list) {
     inputBox.value = list.innerHTML;
-    resultsBox.innerHTML = '';   
+    resultsBox.innerHTML = '';
 }
 
-addSymptom.onclick = function(){
-    let symptomToAdd = document.createElement("symptomToAdd");
-    symptomToAdd.innerHTML = inputBox.value;
-    symptomsList.appendChild(symptomToAdd);
-    inputBox.value = "";
+addSymptom.onclick = function() {
+    addSymptomToList();
+};
 
+inputBox.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        addSymptomToList();
+    }
+});
+
+function addSymptomToList() {
+    if (inputBox.value.trim() !== "") {
+        let symptomToAdd = document.createElement("li");
+        symptomToAdd.innerHTML = inputBox.value;
+        symptomsList.appendChild(symptomToAdd);
+        inputBox.value = "";
+    }
 }

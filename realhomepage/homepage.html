@@ -50,30 +50,34 @@
         </div>
 
     </section>
-    <div class="search-box">
-        <div class="row">
-            <input type="text" id="input-box" placeholder="Type Symptoms"
-            autocomplete ="off">
-            <button id="add-button"><i id="plus-icon" class="fa-solid fa-plus"></i></button>
-
+    <div class = "symptom-input">
+        <div class ="Symptom-diagnosis">
+            <h1> Symptom Diagnosis</h1>
         </div>
-        <div class="result-box">
+        <div class="search-box">
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Type Symptoms"
+                autocomplete ="off">
+                <button id="add-button"><i id="plus-icon" class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="result-box">
+            </div>
         </div>
-    </div>
-    <div class ="symptoms-list">
-        <div class="banana">
-            <h4>
-                Your Symptoms
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </h4>
-            <div>
-                <ul id="listofsymptoms">
-
-
+        <div class ="symptoms-list">
+            <div class="banana">
+                <h3>
+                    Your Symptoms
+                    <button class="searchsymptoms"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="clear-button">Clear</button>
+                </h3>
+                <div>
+                    <ul id="listofsymptoms"> 
                 </ul> 
             </div>
         </div>
     </div>
+    <div class="contact">
+        
     <script src="autocomplete.js"></script>
     <script src="sticky.js"></script> 
     </script>
