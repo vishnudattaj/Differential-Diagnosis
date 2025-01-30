@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strep Throat Diagnosis</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>You have: Strep Throat</h1> <h1>&#128516;</h1>
+        <h3>Symptoms:</h3>
+        <ul>
+            <li>Sore throat</li>
+            <li>Pain when swallowing</li>
+            <li>Swollen lymph nodes</li>
+            <li>Fever</li>
+            <li>White patches on tonsils</li>
+            <li>Headache</li>
+            
+        </ul>
+        <h3>Treatment:</h3>
+        <p>Antibiotics such as penicillin or amoxicillin are prescribed. Pain relievers and throat lozenges can help alleviate discomfort.</p>
+        <p>For more detailed information, consult your healthcare provider.</p>
+        <a href="{{ url_for('protected') }}">Back to your profile</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
+    <nav>
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+    </nav>
+</footer>
+</html>
