@@ -1,23 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-{% extends "base.html"}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Symptom Checker</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-</head>
-
-{% block content}
-<body>
-    <h1>Welcome {{save}}!</h1>
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome {{ save }}!</h1>
     <h2>Symptom Checker</h2>
-    <form id="symptomForm" action="/protected" method = "POST">
-
+    <form id="symptomForm" action="/protected" method="POST">
         <label for="symptoms">Describe Your Symptoms:</label>
         <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
 
-       <div>  <label>Select any relevant existing conditions:</label> </div> 
+        <div>
+            <label>Select any relevant existing conditions:</label>
+        </div>
         <input type="checkbox" id="diabetes" name="diabetes" value="diabetes">
         <label for="diabetes">Diabetes</label>
         <br>
@@ -26,31 +17,29 @@
         <br>
         <input type="checkbox" id="asthma" name="asthma" value="asthma">
         <label for="asthma">Asthma</label>
-<br>
+        <br>
 
         <input type="hidden" name="action" value="symptomSubmit">
-        <button value="symptomSubmit" name="symptomSubmit">Submit</button>
+        <button type="submit">Submit</button>
 
         <label>
-            <input type="checkbox" name="terms">
+            <input type="checkbox" name="terms" required>
             I agree to the terms and conditions
         </label>
     </form>
 
     <form id="logOut" action="/protected" method="POST">
         <input type="hidden" name="action" value="logOut">
-        <button value="logOut" name="logOut">Log Out</button>
+        <button type="submit">Log Out</button>
     </form>
-{% endblock %}
+
     <script type="text/javascript">
         function myFunc(event) {
             event.preventDefault();
-
-            var symptoms = document.getElementById("full_name").value;
-            var diabetes = document.getElementById("diabetes").value;
-            var hypertension = document.getElementById("hypertension").value;
-            var asthma = document.getElementById("hypertension").value;
+            var symptoms = document.getElementById("symptoms").value;
+            var diabetes = document.getElementById("diabetes").checked;
+            var hypertension = document.getElementById("hypertension").checked;
+            var asthma = document.getElementById("asthma").checked;
         }
     </script>
-</body>
-</html>
+{% endblock %}
