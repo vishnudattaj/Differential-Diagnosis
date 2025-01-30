@@ -1,4 +1,6 @@
-
+html{
+    scroll-behavior: smooth;
+}
 
 body {
     
@@ -142,6 +144,26 @@ input{
     justify-content:center;
     text-align: center;
 }
+.Explanation{
+    font-size: 30px;
+    text-align: center;
+    border:5px solid rgba(52, 73, 94, 0.8);
+    align-items: center;
+    width: 380px;
+    display:flex;
+    flex-direction:column;
+    background: white ;
+    border-radius: 30px;
+    position: absolute;
+    top:100px;
+    right: 40px;
+    color: #555;
+    margin-top:200px;
+}
+.Explanation h5{
+margin-top:00px;
+}
+
 .Symptom-diagnosis{
     width:40%;
     color:rgba(52, 73, 94, 0.8);
@@ -158,6 +180,7 @@ input{
     transition:1s;
     cursor:pointer;
 }
+
 
 .header {
     min-height: 1080px;
