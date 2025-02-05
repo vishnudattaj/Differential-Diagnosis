@@ -2,9 +2,10 @@ import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 from sklearn.model_selection import StratifiedKFold, cross_val_score, train_test_split
+import joblib
 
-testing = pd.read_csv("Testing.csv")
-training = pd.read_csv("Training.csv")
+testing = pd.read_csv("./Testing.csv")
+training = pd.read_csv("./Training.csv")
 
 X_train = training.iloc[:, 0:132]
 y_train = training.iloc[:, 132]
@@ -442,3 +443,5 @@ print("Predicted disease:", malaria_prediction[0])
 
 typhoid_prediction = rfc.predict(typhoid)
 print("Predicted disease:", typhoid_prediction[0])
+
+joblib.dump(rfc, filename="randomForestModel.joblib")
