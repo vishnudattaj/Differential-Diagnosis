@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
+import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
@@ -32,6 +33,7 @@ class MedicalInfo(db.Model):
 class User(flask_login.UserMixin):
     pass
 
+xgb = joblib.load(filename="randomForestModel.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
