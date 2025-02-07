@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
 import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
+import datetime
 
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -19,15 +20,11 @@ class LoginScreen(db.Model):
     passwords = db.Column(db.String(200), nullable=False)
 
 
-class MedicalInfo(db.Model):
+class SymptomSubmission(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    symptoms = db.Column(db.String(500))
-    diabetes = db.Column(db.Boolean, default=False)
-    hypertension = db.Column(db.Boolean, default=False)
-    asthma = db.Column(db.Boolean, default=False)
-    terms_accepted = db.Column(db.Boolean, nullable=False)
+    symptoms = db.Column(db.String(500), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('login_screen.id'), nullable=False)
-    user = db.relationship('LoginScreen', backref=db.backref('medical_info', lazy=True))
+
 
 
 class User(flask_login.UserMixin):
@@ -89,37 +86,35 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/protected', methods=['GET', 'POST'])
-@flask_login.login_required
-def protected():
-    if request.method == 'POST':
-        action = request.form.get('action')
+@app.route('/submit', methods=['POST'])
+def submit_symptoms():
+    if not flask_login.current_user.is_authenticated:
+        return jsonify({"error": "User not authenticated"}), 401
 
-        if action == "symptomSubmit":
-            if not request.form.get('terms'):
-                return "Terms must be accepted", 400
+    try:
+        data = request.get_json()
+        symptoms = data.get('symptoms', [])
+        
+        # Get current user
+        user_id = session['user_id']
+        
+        # Create new symptom entry
+        submission = SymptomSubmission(
+            symptoms=", ".join(symptoms),
+            user_id=user_id
+        )
+        db.session.add(submission)
+        db.session.commit()
+        
 
-            current_user = LoginScreen.query.filter_by(
-                usernames=flask_login.current_user.id
-            ).first()
+@app.route('/')
+def home():
+    return render_template('homepage.html')
 
-            medical_entry = MedicalInfo(
-                symptoms=request.form.get('symptoms'),
-                diabetes='diabetes' in request.form,
-                hypertension='hypertension' in request.form,
-                asthma='asthma' in request.form,
-                terms_accepted=True,
-                user_id=current_user.id
-            )
-
-            db.session.add(medical_entry)
-            db.session.commit()
-
-            return render_template('homepage.html', save=flask_login.current_user.id)
-
-        elif action == "logOut":
-            return redirect(url_for('logout'))
-    return render_template('homepage.html', save=flask_login.current_user.id)
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
 
 @app.route('/logout')
 def logout():

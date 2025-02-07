@@ -178,3 +178,34 @@ function addSymptomToList() {
         inputBox.value = "";
     }
 }
+
+document.querySelector('.searchsymptoms').addEventListener('click', async () => {
+    const symptoms = Array.from(document.querySelectorAll('#listofsymptoms li'))
+                         .map(li => li.textContent.replace('×', '').trim());
+
+    try {
+        const response = await fetch('/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ symptoms: symptoms })
+        });
+
+        const data = await response.json();
+        
+        if (response.ok) {
+            // Handle successful submission
+            console.log('Diagnosis:', data.diagnosis);
+            alert(`Diagnosis Result: ${data.diagnosis}\nSymptoms saved to your history`);
+        } else {
+            // Handle errors
+            console.error('Server error:', data.error);
+            alert(`Error: ${data.error || 'Failed to submit symptoms'}`);
+        }
+        
+    } catch (error) {
+        console.error('Network error:', error);
+        alert('Network error - please check your connection');
+    }
+});
