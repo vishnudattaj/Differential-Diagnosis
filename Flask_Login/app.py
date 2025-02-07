@@ -33,7 +33,7 @@ class MedicalInfo(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="randomForestModel.joblib")
+xgb = joblib.load(filename="Flask_Login/randomForestModel.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
