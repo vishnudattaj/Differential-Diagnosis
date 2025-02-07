@@ -56,7 +56,7 @@ def login():
             user = User()
             user.id = username
             flask_login.login_user(user)
-            return redirect(url_for('protected'))
+            return redirect(url_for('home'))
         return render_template('wrongCredentials.html')
     return render_template('login.html')
 
@@ -106,8 +106,15 @@ def submit_symptoms():
         db.session.add(submission)
         db.session.commit()
         
+        return jsonify({
+            "message": "Symptoms stored successfully",
+            "diagnosis": get_diagnosis(symptoms)
+        }), 200
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-@app.route('/')
+@app.route('/home')
 def home():
     return render_template('homepage.html')
 
