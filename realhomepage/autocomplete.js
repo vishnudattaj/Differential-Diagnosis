@@ -132,6 +132,8 @@ const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
+const clearButton = document.getElementById("clear-button");
+
 
 inputBox.onkeyup = function() {
     let result = [];
@@ -162,7 +164,10 @@ function selectInput(list) {
 
 addSymptom.onclick = function() {
     addSymptomToList();
+    console.log("added");
 };
+
+
 
 inputBox.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -178,3 +183,7 @@ function addSymptomToList() {
         inputBox.value = "";
     }
 }
+
+clearButton.onclick = function() {
+    symptomsList.innerHTML = "";
+};
