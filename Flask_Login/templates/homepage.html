@@ -1,45 +1,93 @@
-{% extends "base.html" %}
-{% block content %}
-    <h1>Welcome {{ save }}!</h1>
-    <h2>Symptom Checker</h2>
-    <form id="symptomForm" action="/protected" method="POST">
-        <label for="symptoms">Describe Your Symptoms:</label>
-        <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="e.g., headache, fever..." required></textarea>
 
-        <div>
-            <label>Select any relevant existing conditions:</label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symptom Checker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/homepage.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <section class = "header">
+        <nav>
+        <img class = "transparentLogo" src ="{{ url_for('static', filename='img/Differential_Diagnosis_Logo-removebg-preview.png') }}">
+        <div class ="nav-links">
+            <ul>
+                <li><a href ="">HOME</a></li>
+                <li><a href ="">ABOUT</a></li>
+                <li><a href ="">YOUR DISEASES</a></li>
+                <li><a href =""> SETTINGS</a></li>
+                <li><a href =""> CONTACT</a></li>
+            </ul>
         </div>
-        <input type="checkbox" id="diabetes" name="diabetes" value="diabetes">
-        <label for="diabetes">Diabetes</label>
-        <br>
-        <input type="checkbox" id="hypertension" name="hypertension" value="hypertension">
-        <label for="hypertension">Hypertension</label>
-        <br>
-        <input type="checkbox" id="asthma" name="asthma" value="asthma">
-        <label for="asthma">Asthma</label>
-        <br>
+        </nav>
+        <div class="text-box">
+            <hl>Differential Diagnosis</hl>
+            <p>The New Doctor</p>
+            <button class="Front-button"><i class="fa-solid fa-magnifying-glass"></i>Diagnosis Your Symptoms</button>
+        </div>
+        <div class="health-icons">
+            <i class="fa-solid fa-virus-covid"></i>
+            <i class="fa-solid fa-user-doctor"></i>
+            <i class="fa-solid fa-staff-snake"></i>
+            <i class="fa-solid fa-brain"></i>
+            <i class="fa-solid fa-tablets"></i>
+            <i class="fa-solid fa-vial"></i>
+            <i class="fa-solid fa-thermometer"></i>
+            <i class="fa-solid fa-syringe"></i>
+            <i class="fa-solid fa-lungs"></i>
+            <i class="fa-solid fa-heart-pulse"></i>
+            <i class="fa-solid fa-capsules"></i>
+            <i class="fa-solid fa-bandage"></i>
+        </div>
 
-        <input type="hidden" name="action" value="symptomSubmit">
-        <button type="submit">Submit</button>
-
-        <label>
-            <input type="checkbox" name="terms" required>
-            I agree to the terms and conditions
-        </label>
-    </form>
-
-    <form id="logOut" action="/protected" method="POST">
-        <input type="hidden" name="action" value="logOut">
-        <button type="submit">Log Out</button>
-    </form>
-
-    <script type="text/javascript">
-        function myFunc(event) {
-            event.preventDefault();
-            var symptoms = document.getElementById("symptoms").value;
-            var diabetes = document.getElementById("diabetes").checked;
-            var hypertension = document.getElementById("hypertension").checked;
-            var asthma = document.getElementById("asthma").checked;
-        }
-    </script>
-{% endblock %}
+    </section>
+    <div class = "symptom-input">
+        <div class ="Symptom-diagnosis">
+            <h1> Symptom Diagnosis</h1>
+        </div>
+        <div class="search-box">
+            <div class="row">
+                <input type="text" id="input-box" placeholder="Type Symptoms"
+                autocomplete ="off">
+                <button id="add-button"><i id="plus-icon" class="fa-solid fa-plus"></i></button>
+            </div>
+            <div class="result-box">
+            </div>
+        </div>
+        <div class ="symptoms-list">
+            <div class="banana">
+                <h3>
+                    Your Symptoms
+                    <button class="searchsymptoms"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="clear-button">Clear</button>
+                </h3>
+                <div>
+                    <ul id="listofsymptoms"> 
+                </ul> 
+            </div>
+        </div>
+    </div>
+    <div class = "Explanation">
+        <h3>
+            How to Diagnose Your Symptoms:
+        </h3>
+        <h5>
+            Step 1: Enter your symptoms in the search bar and click the plus icon to add them to your list.
+            <br>
+            Step 2: Click the magnifying glass icon to view your possible diagnoses.
+        </h5>
+    </div>
+    <div class="contact">
+        
+    <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sticky.js') }}"></script> 
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+</body>
+</html>

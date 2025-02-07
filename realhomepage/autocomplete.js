@@ -128,12 +128,12 @@ let availableKeywords = [
     'Yellow Crust Ooze',
 ]
 
+
 const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
 const clearButton = document.getElementById("clear-button");
-
 
 inputBox.onkeyup = function() {
     let result = [];
@@ -167,8 +167,6 @@ addSymptom.onclick = function() {
     console.log("added");
 };
 
-
-
 inputBox.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addSymptomToList();
@@ -186,4 +184,5 @@ function addSymptomToList() {
 
 clearButton.onclick = function() {
     symptomsList.innerHTML = "";
+    console.log("cleared");
 };
