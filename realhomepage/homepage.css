@@ -221,9 +221,8 @@ nav.sticky
 {
     background:rgba(52, 73, 94, 0.8);
     margin:0%;
-    width:98%;
+    width:100%;
     border-radius:0px;
-
 }
 
 @keyframes thump {
