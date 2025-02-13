@@ -86,7 +86,7 @@ def signup():
         user = User()
         user.id = username
         flask_login.login_user(user)
-        return redirect(url_for('protected'))
+        return redirect(url_for('home'))
 
     return render_template('signup.html')
 
@@ -118,14 +118,14 @@ def submit_symptoms():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
-    return render_template('homepage.html')
-
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    if request.method == "POST":
+        data = request.data
+        symptoms = data.get('symptoms', [])
+        print(symptoms)
+    else:
+        return render_template('homepage.html')
 
 @app.route('/logout')
 def logout():
@@ -134,4 +134,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)  # Explicitly set port
+    app.run(debug=True, port=5001)

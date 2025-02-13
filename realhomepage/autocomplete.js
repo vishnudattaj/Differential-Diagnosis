@@ -134,6 +134,8 @@ const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
 const clearButton = document.getElementById("clear-button");
+const searchButton = document.getElementById("search-button");
+const homeUrl = searchButton.getAttribute('data-home-url');
 
 inputBox.onkeyup = function() {
     let result = [];
@@ -152,9 +154,9 @@ inputBox.onkeyup = function() {
 
 function display(result) {
     const content = result.map((list) => {
-        return "<li onclick=selectInput(this)>" + list + "<li>";
+        return "<li onclick=selectInput(this)>" + list + "</li>";
     });
-    resultsBox.innerHTML = "<ul>" + content.join('') + "<ul>";
+    resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>";
 }
 
 function selectInput(list) {
@@ -185,4 +187,16 @@ function addSymptomToList() {
 clearButton.onclick = function() {
     symptomsList.innerHTML = "";
     console.log("cleared");
+};
+
+searchButton.onclick = function() {
+    let symptoms = Array.from(symptomsList.children).map(li => li.textContent);
+    console.log(symptoms)
+    fetch(homeUrl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ symptoms: symptoms })
+    })
 };
