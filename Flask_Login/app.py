@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import flask_login
 import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
+import json
 import datetime
 
 app = Flask(__name__)
@@ -18,12 +19,15 @@ class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usernames = db.Column(db.String(100), unique=True, nullable=False)
     passwords = db.Column(db.String(200), nullable=False)
+    disease_history = db.Column(db.Text)
 
+    def set_data(self, data):
+        self.disease_history = json.dumps(data)
 
-class SymptomSubmission(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    symptoms = db.Column(db.String(500), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('login_screen.id'), nullable=False)
+    def get_data(self):
+        if not self.data:
+            return {}
+        return json.loads(self.disease_history)
 
 
 
