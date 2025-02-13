@@ -1,0 +1,140 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    max-width: 100%;
+    margin: auto;
+    padding: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.header {
+    min-height: 120vh;
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(to bottom, #defffa, #b0e1ff);
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    transition:0.5s;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:100000;
+    margin:1.5%;
+    height:8.8889vh;
+    background-color: #34495e;
+    border-radius: 50px;
+    position: fixed;
+    top:0;
+    width:95%;
+    padding: 0 20px;
+    transition: 0.5s;
+}
+
+nav.sticky {
+    background:rgba(52, 73, 94, 0.8);
+    margin:0%;
+    width:100%;
+    border-radius:0px;
+}
+
+@keyframes thump {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.2);
+    }
+}
+
+.transparentLogo {
+    height: 16.66667vh;
+    transition: transform 1s;
+    z-index: 1000000000;
+}
+
+.transparentLogo:hover {
+    animation: thump 0.5s infinite;
+}
+
+.nav-links {
+    flex:1;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links ul li {
+    list-style:none;
+    display:inline-block;
+    padding:.88889vh 1.333333vh;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color:#fff;
+    text-decoration:none;
+    font-size:20px;
+    margin: 0 1.666667vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    z-index:1000000;
+    transition: transform 2s;
+}
+
+.nav-links ul li::after {
+    content:'';
+    width:0%;
+    height:.22222vh;
+    background: #fa9696;
+    display: block;
+    margin:auto;
+    transition:0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width:100%;
+}
+
+.nav-links ul li:hover a {
+    color:#fa9696;
+    transition:0.5s;
+}
+
+.Your-disease{
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    color: #34495e;
+    font-size: 3.33333vh;
+    margin-top: 14.5%;
+    margin-right:55%;
+    text-align:center;
+}
+.Your-disease h1{
+    font-size: 3.33333vh;
+    margin-top: 80.5%;
+    margin-left: 100%;
+    text-align:center;
+}
+.banner{
+    position: absolute;
+    top: 0%;
+    left:10%;
+    width: 82%;
+    z-index: 1;
+}
+
+.disease-image{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+}
