@@ -65,8 +65,8 @@
             <div class="banana">
                 <h3>
                     Your Symptoms
-                    <button class="searchsymptoms"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    <button class="clear-button">Clear</button>
+                    <button class="searchsymptoms" id="search-button"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    <button class="clear-button" id="clear-button">Clear</button>
                 </h3>
                 <div>
                     <ul id="listofsymptoms"> 
@@ -89,5 +89,8 @@
     <script src="{{ url_for('static', filename='js/autocomplete.js') }}"></script>
     <script src="{{ url_for('static', filename='js/sticky.js') }}"></script> 
     <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+    <script>
+        var homeUrl = "{{ url_for('home') }}";  // Flask generates the URL for 'home' and assigns it to homeUrl
+    </script>    
 </body>
 </html>
