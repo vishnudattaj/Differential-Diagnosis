@@ -29,7 +29,7 @@ class LoginScreen(db.Model):
             return {}
         return json.loads(self.disease_history)
 
-
+today = datetime.datetime.now().strftime("%x")
 
 class User(flask_login.UserMixin):
     pass
