@@ -1,131 +1,136 @@
 let availableKeywords = [
-    'Itching',
-    'Skin Rash',
-    'Nodal Skin Eruption',
-    'Continuous Sneezing',
-    'Shivering',
-    'Chills',
-    'Stomach Pain',
-    'Acidity',
-    'Ulcers on Tongue',
-    'Muscle Shrinkage',
-    'Vomiting',
-    'Burning Micturition',
-    'Fatigue',
-    'Weight Gain',
-    'Weight Loss',
-    'Anxiety',
-    'Cold Hands and Feet',
-    'Mood Swings',
-    'Restlessness',
-    'Lethargy',
-    'Patches in Throat',
-    'Irregular Blood Sugar',
-    'Cough',
-    'High Fever',
-    'Breathlessness',  
-    'Sweating',
-    'Indigestion',
-    'Headache',
-    'Yellowish Skin',
-    'Dark Urine',
-    'Nausea',
-    'Loss of Appetite',
-    'Pain Behind the Eyes',
-    'Back Pain',
-    'Constipation',
-    'Abdominal Pain',
-    'Diarrhea',
-    'Mild Fever',
-    'Yellow Urine',
-    'Yellowing of Eyes',
-    'Acute Liver Failure',
-    'Fluid Overload',
-    'Swelling of Stomach',
-    'Swollen Lymph Nodes',
-    'Malaise',
-    'Blurred and Distorted Vision',
-    'Phlegm',
-    'Throat Irritation',
-    'Redness of Eyes',
-    'Sinus Pressure',
-    'Runny Nose',
-    'Congestion',
-    'Chest Pain',
-    'Weakness in Limbs',
-    'Fast Heart Rate',
-    'Pain During Bowel Movements',
-    'Pain in Anal Region',
-    'Bloody Stool',
-    'Irritation in Anus',
-    'Neck Pain',
-    'Dizziness',
-    'Cramps',
-    'Bruising',
-    'Obesity',
-    'Swollen Legs',
-    'Swollen Blood Vessels',
-    'Puffy Face and Eyes',
-    'Enlarged Thyroid',
-    'Brittle Nails',
-    'Swollen Extremeties',
-    'Excessive Hunger',
-    'Extra Marital Contacts',
-    'Drying and Tingling Lips',
-    'Slurred Speech',
-    'Knee Pain',
-    'Hip Joint Pain',
-    'Muscle Weakness',
-    'Stiff Neck',
-    'Swelling Joints',
-    'Movement Stiffness',
-    'Spinning Movements',
-    'Unsteadiness',
-    'Loss of Balance',
-    'Loss of Smell',
-    'Weakness of One Body Side',
-    'Bladder Discomfort',
-    'Foul Smell of Urine',
-    'Continuous Feeling of Urine',
-    'Passage of Gases',
-    'Internal Itching',
-    'Toxic Look (Typhos)',
-    'Depression',
-    'Irritability',
-    'Muscle Pain',
-    'Altered Sensorium',
-    'Red Spots Over Body',
-    'Belly Pain',
-    'Abnormal Menstruation',
-    'Dischromic Patches',
-    'Watering from Eyes',
-    'Increased Appetite',
-    'Polyuria',
-    'Mucoid Sputum',
-    'Rusty Sputum',
-    'Lack of Concentration',
-    'Visual Disturbances',
-    'Receiving Blood Transfusion',
-    'Receiving Unsterile Injections',
-    'Coma',
-    'Stomach Bleeding',
-    'Distension of Abdomen',
-    'History of Alcohol Consumption',
-    'Fluid Overload',
-    'Blood in Sputum',
-    'Prominent Veins on Calf',
-    'Palpitations',
-    'Painful Walking',
-    'Pus Filled Pimples',
-    'Blackheads',
-    'Scarring',
-    'Skin Peeling',
-    'Silver Like Dusting',
-    'Small Dents in Nails',
-    'Inflamed Nails',
-    'Blister',
-    'Red Sore Around Nose',
-    'Yellow Crust Ooze',
+    "Itching",
+    "Skin Rash",
+    "Nodal Skin Eruptions",
+    "Continuous Sneezing",
+    "Shivering",
+    "Chills",
+    "Joint Pain",
+    "Stomach Pain",
+    "Acidity",
+    "Ulcers On Tongue",
+    "Muscle Wasting",
+    "Vomiting",
+    "Burning Micturition",
+    "Spotting Urination",
+    "Fatigue",
+    "Weight Gain",
+    "Anxiety",
+    "Cold Hands And Feets",
+    "Mood Swings",
+    "Weight Loss",
+    "Restlessness",
+    "Lethargy",
+    "Patches In Throat",
+    "Irregular Sugar Level",
+    "Cough",
+    "High Fever",
+    "Sunken Eyes",
+    "Breathlessness",
+    "Sweating",
+    "Dehydration",
+    "Indigestion",
+    "Headache",
+    "Yellowish Skin",
+    "Dark Urine",
+    "Nausea",
+    "Loss Of Appetite",
+    "Pain Behind The Eyes",
+    "Back Pain",
+    "Constipation",
+    "Abdominal Pain",
+    "Diarrhoea",
+    "Mild Fever",
+    "Yellow Urine",
+    "Yellowing Of Eyes",
+    "Acute Liver Failure",
+    "Fluid Overload",
+    "Swelling Of Stomach",
+    "Swelled Lymph Nodes",
+    "Malaise",
+    "Blurred And Distorted Vision",
+    "Phlegm",
+    "Throat Irritation",
+    "Redness Of Eyes",
+    "Sinus Pressure",
+    "Runny Nose",
+    "Congestion",
+    "Chest Pain",
+    "Weakness In Limbs",
+    "Fast Heart Rate",
+    "Pain During Bowel Movements",
+    "Pain In Anal Region",
+    "Bloody Stool",
+    "Irritation In Anus",
+    "Neck Pain",
+    "Dizziness",
+    "Cramps",
+    "Bruising",
+    "Obesity",
+    "Swollen Legs",
+    "Swollen Blood Vessels",
+    "Puffy Face And Eyes",
+    "Enlarged Thyroid",
+    "Brittle Nails",
+    "Swollen Extremities",
+    "Excessive Hunger",
+    "Extra Marital Contacts",
+    "Drying And Tingling Lips",
+    "Slurred Speech",
+    "Knee Pain",
+    "Hip Joint Pain",
+    "Muscle Weakness",
+    "Stiff Neck",
+    "Swelling Joints",
+    "Movement Stiffness",
+    "Spinning Movements",
+    "Loss Of Balance",
+    "Unsteadiness",
+    "Weakness Of One Body Side",
+    "Loss Of Smell",
+    "Bladder Discomfort",
+    "Foul Smell Of Urine",
+    "Continuous Feel Of Urine",
+    "Passage Of Gases",
+    "Internal Itching",
+    "Toxic Look (Typhos)",
+    "Depression",
+    "Irritability",
+    "Muscle Pain",
+    "Altered Sensorium",
+    "Red Spots Over Body",
+    "Belly Pain",
+    "Abnormal Menstruation",
+    "Dischromic Patches",
+    "Watering From Eyes",
+    "Increased Appetite",
+    "Polyuria",
+    "Family History",
+    "Mucoid Sputum",
+    "Rusty Sputum",
+    "Lack Of Concentration",
+    "Visual Disturbances",
+    "Receiving Blood Transfusion",
+    "Receiving Unsterile Injections",
+    "Coma",
+    "Stomach Bleeding",
+    "Distention Of Abdomen",
+    "History Of Alcohol Consumption",
+    "Fluid Overload",
+    "Blood In Sputum",
+    "Prominent Veins On Calf",
+    "Palpitations",
+    "Painful Walking",
+    "Pus Filled Pimples",
+    "Blackheads",
+    "Scurring",
+    "Skin Peeling",
+    "Silver Like Dusting",
+    "Small Dents In Nails",
+    "Inflammatory Nails",
+    "Blister",
+    "Red Sore Around Nose",
+    "Yellow Crust Ooze"
 ]
 
 
@@ -134,7 +139,9 @@ const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
 const clearButton = document.getElementById("clear-button");
+const searchButton = document.getElementById("search-button");
 
+// Update symptoms list on input
 inputBox.onkeyup = function() {
     let result = [];
     let input = inputBox.value;
@@ -142,7 +149,6 @@ inputBox.onkeyup = function() {
         result = availableKeywords.filter((keyword) => {
             return keyword.toLowerCase().includes(input.toLowerCase());
         });
-        console.log(result);
     }
     display(result);
     if (!result.length) {
@@ -150,39 +156,75 @@ inputBox.onkeyup = function() {
     }
 };
 
+// Display matched symptoms
 function display(result) {
     const content = result.map((list) => {
-        return "<li onclick=selectInput(this)>" + list + "<li>";
+        return "<li onclick=selectInput(this)>" + list + "</li>";
     });
-    resultsBox.innerHTML = "<ul>" + content.join('') + "<ul>";
+    resultsBox.innerHTML = "<ul>" + content.join('') + "</ul>";
 }
 
+// Select symptom from result list
 function selectInput(list) {
     inputBox.value = list.innerHTML;
     resultsBox.innerHTML = '';
 }
 
+// Add symptom to the list
 addSymptom.onclick = function() {
     addSymptomToList();
-    console.log("added");
 };
 
+// Add symptom when Enter is pressed
 inputBox.addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         addSymptomToList();
     }
 });
 
+// Add symptom to the list and create hidden input
 function addSymptomToList() {
     if (inputBox.value.trim() !== "") {
         let symptomToAdd = document.createElement("li");
         symptomToAdd.innerHTML = inputBox.value;
         symptomsList.appendChild(symptomToAdd);
-        inputBox.value = "";
+        
+        // Create and append a hidden input for this symptom
+        createHiddenInput(inputBox.value);
+        
+        inputBox.value = ""; // Clear the input box
     }
 }
 
+// Function to create a hidden input for the symptom
+function createHiddenInput(symptom) {
+    // Generate a unique name for each hidden input (using the number of existing inputs)
+    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
+    const hiddenInputName = `symptom${hiddenInputs.length + 1}`;
+    
+    // Create a new hidden input element
+    let newHiddenInput = document.createElement('input');
+    newHiddenInput.type = 'hidden';
+    newHiddenInput.name = hiddenInputName;
+    newHiddenInput.value = symptom;
+    
+    // Append the hidden input to the form
+    document.querySelector('form').appendChild(newHiddenInput);
+}
+
+// Clear symptoms list
 clearButton.onclick = function() {
     symptomsList.innerHTML = "";
-    console.log("cleared");
+    clearHiddenInputs();
+};
+
+// Clear all hidden inputs (optional)
+function clearHiddenInputs() {
+    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
+    hiddenInputs.forEach(input => input.remove());
+}
+
+// Submit the form (handled by the browser's default form submission)
+searchButton.onclick = function() {
+    // Form will be submitted normally with hidden inputs containing symptom values
 };
