@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session, jsonify
+from flask import Flask, render_template, request, redirect, url_for, session, jsonify, send_file
 from flask_sqlalchemy import SQLAlchemy
 import flask_login
 import joblib
@@ -31,7 +31,7 @@ class SymptomSubmission(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="../randomForestModel.joblib")
+xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/randomForestModel.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
@@ -96,7 +96,7 @@ def home():
             symptoms.append(request.form[f'symptom{i}'])
             i += 1
         
-        trainingdf = pd.read_csv("Testing.csv")
+        trainingdf = pd.read_csv("/workspaces/3rd-period-isp-differential-diagnosis/Flask_Login/Testing.csv")
         column_names = trainingdf.columns.tolist()
         userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
         userSymptoms.drop(columns=["Disease"], inplace=True)
@@ -107,6 +107,8 @@ def home():
         
         disease_prediction = xgb.predict(userSymptoms)
         print("Predicted disease:", disease_prediction[0])
+        disease_prediction = disease_prediction[0].replace(" ", "_")
+        return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{disease_prediction}.html")
     return render_template('homepage.html')
 
 if __name__ == '__main__':
