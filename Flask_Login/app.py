@@ -4,6 +4,7 @@ import flask_login
 import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
+import pandas as pd
 
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -30,7 +31,7 @@ class SymptomSubmission(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="randomForestModel.joblib")
+xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/randomForestModel.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
@@ -86,34 +87,26 @@ def signup():
 
     return render_template('signup.html')
 
-@app.route('/submit', methods=['POST'])
-def submit_symptoms():
-    if not flask_login.current_user.is_authenticated:
-        return jsonify({"error": "User not authenticated"}), 401
-
-    try:
-        data = request.get_json()
-        symptoms = data.get('symptoms', [])
-        
-        user_id = session['user_id']
-        
-        submission = SymptomSubmission(
-            symptoms=", ".join(symptoms),
-            user_id=user_id
-        )
-        db.session.add(submission)
-        db.session.commit()
-        
-        return jsonify({
-            "message": "Symptoms stored successfully",
-            "diagnosis": get_diagnosis(symptoms)
-        }), 200
-        
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
+    if request.method == "POST":
+        symptoms = []
+        i = 1
+        while f'symptom{i}' in request.form:
+            symptoms.append(request.form[f'symptom{i}'])
+            i += 1
+        
+        trainingdf = pd.read_csv("/workspaces/3rd-period-isp-differential-diagnosis/Flask_Login/Testing.csv")
+        column_names = trainingdf.columns.tolist()
+        userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
+        userSymptoms.drop(columns=["Disease"], inplace=True)
+
+        for column in column_names:
+            if column in symptoms:
+                userSymptoms.loc[0, column] = 1
+        
+        disease_prediction = xgb.predict(userSymptoms)
+        print("Predicted disease:", disease_prediction[0])
     return render_template('homepage.html')
 
 if __name__ == '__main__':
