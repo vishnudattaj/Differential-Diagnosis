@@ -6,22 +6,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>You have: Allergy</h1> <h1>&#128516;</h1>
+        <h1>You have: Allergies</h1> 
+        <h1><img class = "disease-image" src = manage-allergies-thumb.jpg alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>Allergies occur when the immune system overreacts to harmless substances like pollen, dust, or certain foods, triggering symptoms such as sneezing, itching, or swelling. Common allergens include pet dander, mold, insect stings, and specific medications.</p>
+        </div>
         <h3>Symptoms:</h3>
         <ul>
-            <li>Sneezing</li>
-            <li>Runny nose</li>
-            <li>Itchy or watery eyes</li>
-            <li>Skin rashes</li>
-            <li>Coughing</li>
-            <li>Shortness of breath</li>
+            <li class ="apple">Sneezing</li>
+            <li class ="apple">Runny nose</li>
+            <li class ="apple">Itchy or watery eyes</li>
+            <li class ="apple">Skin rashes</li>
+            <li class ="apple">Coughing</li>
+            <li class ="apple">Shortness of breath</li>
         </ul>
 
         <h3>Treatment:</h3>
-        <p>Antihistamines, nasal decongestants, or allergy shots. Avoiding known allergens and using air purifiers.</p>
+        <p>Allergy treatment includes avoiding triggers, taking antihistamines or decongestants for mild symptoms, and using corticosteroids or immunotherapy (allergy shots) for long-term relief. In severe cases, an epinephrine injection (EpiPen) is necessary for anaphylaxis.</p>
+        <p>1. Local Honey – Consuming raw local honey may help build tolerance to pollen allergens over time.
+            <br>
+           2.  Quercetin – A natural antioxidant found in onions, apples, and berries that may help stabilize mast cells to reduce histamine release.            <br>
+           3. Stinging Nettle – Often used as a tea or supplement, it has anti-inflammatory properties that may relieve hay fever symptoms.            <br>
+           4. Butterbur – An herbal extract that may work as a natural antihistamine to reduce nasal congestion and headaches.            <br>
+           5. Saline Nasal Rinse – Using a neti pot with a saline solution can clear allergens from the nasal passages and reduce congestion.            <br>
+           6. Probiotics – Supporting gut health with probiotics (yogurt, kefir, or supplements) may strengthen the immune system and reduce allergic reactions.            <br>
+           7. Essential Oils (Peppermint, Eucalyptus, Lavender) – Diffusing or applying diluted essential oils can help with congestion, inflammation, and relaxation.</p>
 
         <p>For more detailed information, consult your healthcare provider.</p>
 
@@ -30,12 +64,13 @@
 </body>
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
-    <nav>
-        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </footer>
-
+<script src="sticky.js"></script>
 </html>
+

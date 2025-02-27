@@ -1,6 +1,6 @@
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: "Montserrat", sans-serif;
     background: linear-gradient(to right, #f8f9fa, #e9ecef);
     margin: 0;
     padding: 0;
@@ -8,10 +8,11 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 130vh;
 }
 
 .container {
+    margin-top:15vh;
     background: white;
     padding: 30px;
     border-radius: 10px;
@@ -21,7 +22,7 @@ body {
 }
 
 h1 {
-    color: #007bff;
+    color: #8EC3E6;
     font-size: 2rem;
     margin-bottom: 15px;
 }
@@ -36,7 +37,7 @@ ul {
     padding: 0;
 }
 
-ul li {
+.apple {
     background: #f8f9fa;
     margin: 5px 0;
     padding: 10px;
@@ -51,10 +52,10 @@ p {
 }
 
 
-a {
+.banana {
     display: inline-block;
     padding: 10px 15px;
-    background: #007bff;
+    background: #8EC3E6;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -62,6 +63,96 @@ a {
     font-weight: bold;
 }
 
-a:hover {
+.banana:hover {
     background: #0056b3;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index:100000;
+    margin:1.5%;
+    height:8.8889vh;
+    background-color: #3A5D9C;
+    border-radius: 50px;
+    position: fixed;
+    top:0;
+    width:95%;
+    padding: 0 20px;
+    transition: 0.5s;
+}
+
+nav.sticky {
+    background:rgba(136, 185, 235, 0.6);
+    margin:0%;
+    width:100%;
+    border-radius:0px;
+}
+
+@keyframes thump {
+    0%, 100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.2);
+    }
+}
+
+.transparentLogo {
+    height: 16.66667vh;
+    transition: transform 1s;
+    z-index: 1000000000;
+}
+
+.transparentLogo:hover {
+    animation: thump 0.5s infinite;
+}
+
+.nav-links {
+    flex:1;
+    text-align: right;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-links ul li {
+    list-style:none;
+    display:inline-block;
+    padding:.88889vh 1.333333vh;
+    position: relative;
+}
+
+.nav-links ul li a {
+    color:white;
+    text-decoration:none;
+    font-size:20px;
+    margin: 0 1.666667vh;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    font-style: normal;
+    z-index:1000000;
+    transition: transform 2s;
+}
+
+.nav-links ul li::after {
+    content:'';
+    width:0%;
+    height:.22222vh;
+    background: #fa9696;
+    display: block;
+    margin:auto;
+    transition:0.5s;
+}
+
+.nav-links ul li:hover::after {
+    width:100%;
+}
+
+.nav-links ul li:hover a {
+    color:#fa9696;
+    transition:0.5s;
+}
+
+.description{
+
 }

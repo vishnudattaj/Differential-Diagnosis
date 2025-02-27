@@ -35,7 +35,7 @@ today = datetime.datetime.now().strftime("%x")
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/randomForestModel.joblib")
+xgb = joblib.load(filename="../randomForestModel.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
@@ -100,7 +100,7 @@ def home():
             symptoms.append(request.form[f'symptom{i}'])
             i += 1
         
-        trainingdf = pd.read_csv("/workspaces/3rd-period-isp-differential-diagnosis/Flask_Login/Testing.csv")
+        trainingdf = pd.read_csv("Testing.csv")
         column_names = trainingdf.columns.tolist()
         userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
         userSymptoms.drop(columns=["Disease"], inplace=True)
