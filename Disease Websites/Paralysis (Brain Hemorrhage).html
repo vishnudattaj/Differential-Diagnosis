@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="symptomtemplate.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Diagnosis</title>
+</head>
+<body>
+    <div class="container">
+        <h1>You have: Paralysis (Brain Hemorrhage)</h1> <h1>&#128516;</h1>
+        <h3>Symptoms:</h3>
+        <ul>
+            <li>Sudden severe headache</li>
+            <li>Weakness or numbness on one side of the body</li>
+            <li>Vision problems</li>
+            <li>Difficulty speaking</li>
+            <li>Confusion or trouble understanding speech</li>
+        </ul>
+
+        <h3>Treatment:</h3>
+        <p>Emergency care, surgery (if needed), and rehabilitation therapy to regain movement and function.</p>
+
+        <p>For more detailed information, consult your healthcare provider.</p>
+
+        <a href="{{ url_for('protected') }}">Back to your profile</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
+    <nav>
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+    </nav>
+</footer>
+
+</html>

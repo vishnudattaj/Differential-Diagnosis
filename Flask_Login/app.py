@@ -3,7 +3,6 @@ from flask_sqlalchemy import SQLAlchemy
 import flask_login
 import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
-import json
 import datetime
 import pandas as pd
 
@@ -20,17 +19,14 @@ class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usernames = db.Column(db.String(100), unique=True, nullable=False)
     passwords = db.Column(db.String(200), nullable=False)
-    disease_history = db.Column(db.Text)
 
-    def set_data(self, data):
-        self.disease_history = json.dumps(data)
 
-    def get_data(self):
-        if not self.data:
-            return {}
-        return json.loads(self.disease_history)
+class SymptomSubmission(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    symptoms = db.Column(db.String(500), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('login_screen.id'), nullable=False)
 
-today = datetime.datetime.now().strftime("%x")
+
 
 class User(flask_login.UserMixin):
     pass
@@ -87,7 +83,7 @@ def signup():
         user = User()
         user.id = username
         flask_login.login_user(user)
-        return redirect(url_for('home'))
+        return redirect(url_for('protected'))
 
     return render_template('signup.html')
 
@@ -113,6 +109,11 @@ def home():
         print("Predicted disease:", disease_prediction[0])
     return render_template('homepage.html')
 
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
+
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
@@ -120,4 +121,4 @@ def logout():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5001)  # Explicitly set port

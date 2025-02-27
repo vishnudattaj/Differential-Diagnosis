@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="symptomtemplate.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Diagnosis</title>
+</head>
+<body>
+    <div class="container">
+        <h1>You have: GERD</h1> <h1>&#128516;</h1>
+        <h3>Symptoms:</h3>
+        <ul>
+            <li>Heartburn</li>
+            <li>Regurgitation of food or sour liquid</li>
+            <li>Chest pain</li>
+            <li>Difficulty swallowing</li>
+            <li>Chronic cough</li>
+            <li>Sore throat</li>
+        </ul>
+
+        <h3>Treatment:</h3>
+        <p>Antacids, proton pump inhibitors, H2 blockers, lifestyle changes (e.g., avoiding certain foods, weight loss, elevating head during sleep).</p>
+
+        <p>For more detailed information, consult your healthcare provider.</p>
+
+        <a href="{{ url_for('protected') }}">Back to your profile</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
+    <nav>
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+    </nav>
+</footer>
+
+</html>
