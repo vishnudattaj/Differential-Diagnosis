@@ -6,22 +6,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>You have: Alcoholic Hepatitis</h1> <h1>&#128516;</h1>
+        <h1>You have: Alcoholic Hepatitis</h1> 
+        <h1><img class = "disease-image" src = alcoholic-hepatitis.jpg alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>Write a description of the disease here. This should be a brief overview of the disease, its causes, and its effects on the body.</p>
+        </div>
         <h3>Symptoms:</h3>
         <ul>
-            <li>Jaundice</li>
-            <li>Abdominal pain</li>
-            <li>Loss of appetite</li>
-            <li>Nausea</li>
-            <li>Swelling in the legs and abdomen</li>
-            <li>Fatigue</li>
+            <li class ="apple">Jaundice</li>
+            <li class ="apple">Abdominal pain</li>
+            <li class ="apple">Loss of appetite</li>
+            <li class ="apple">Nausea</li>
+            <li class ="apple">Swelling in the legs and abdomen</li>
+            <li class ="apple">Fatigue</li>
         </ul>
 
         <h3>Treatment:</h3>
-        <p>Avoid alcohol, proper nutrition, corticosteroids in severe cases, and supportive medical care.</p>
+        <p>Avoid alcohol, proper nutrition, corticosteroids in severe cases, and supportive medical care</p>
+        <p>Stop Alcohol Consumption: The most crucial step for liver recovery.
+            Healthy Diet: High in fruits, vegetables, lean protein, and whole grains to support liver function.
+            Milk Thistle: May help protect liver cells (consult a doctor).
+            Turmeric: Anti-inflammatory properties may aid liver health.
+            Ginger & Garlic: Support detoxification and reduce inflammation.
+            Hydration: Drink plenty of water to flush toxins.
+            Exercise: Improves overall liver function.
+            Probiotics: Support gut and liver health (yogurt, kefir, fermented foods).</p>
 
         <p>For more detailed information, consult your healthcare provider.</p>
 
@@ -30,11 +64,13 @@
 </body>
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
-    <nav>
-        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </footer>
+<script src="sticky.js"></script>
 </html>
+

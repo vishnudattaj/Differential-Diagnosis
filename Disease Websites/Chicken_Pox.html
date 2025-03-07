@@ -6,22 +6,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>You have: Chicken Pox</h1> <h1>&#128516;</h1>
+        <h1>You have: Chicken Pox</h1> 
+        <h1><img class = "disease-image" src = chickenpox.jpg alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>Chickenpox is a highly contagious viral infection caused by the varicella-zoster virus. It primarily affects children but can occur in adults as well. The infection is characterized by an itchy red rash that turns into fluid-filled blisters, along with fever, fatigue, and loss of appetite. Chickenpox spreads through direct contact with the rash or through the air via respiratory droplets. It is usually mild but can lead to complications in certain cases, such as pneumonia or infections. Vaccination can prevent chickenpox and its complications.</p>
+        </div>
         <h3>Symptoms:</h3>
         <ul>
-            <li>Itchy red spots (rash)</li>
-            <li>Fever</li>
-            <li>Fatigue</li>
-            <li>Loss of appetite</li>
-            <li>Body aches</li>
-            <li>Blister-like sores</li>
+            <li class ="apple">Itchy red spots (rash)</li>
+            <li class ="apple">Fever</li>
+            <li class ="apple">Fatigue</li>
+            <li class ="apple">Loss of apetite</li>
+            <li class ="apple">Body aches</li>
+            <li class ="apple">Blister-like sores</li>
         </ul>
 
         <h3>Treatment:</h3>
-        <p>Antihistamines for itching, fever-reducing medications, and antiviral drugs for severe cases. Stay hydrated and rest.</p>
+        <p>Antihistamines for itching, fever-reducing medications, and antiviral drugs for severe cases. Stay hydrated and rest</p>
+        <p>Oatmeal Bath: Add ground oatmeal to lukewarm water to soothe itching.
+            Calamine Lotion: Helps reduce itching and irritation.
+            Baking Soda Paste: Mix with water and apply to itchy spots.
+            Coconut Oil: Moisturizes skin and may help with healing.</p>
 
         <p>For more detailed information, consult your healthcare provider.</p>
 
@@ -30,11 +60,13 @@
 </body>
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
-    <nav>
-        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </footer>
+<script src="sticky.js"></script>
 </html>
+
