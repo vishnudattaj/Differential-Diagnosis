@@ -236,9 +236,4 @@ function updateSearchButtonState() {
 
 // Submit the form (handled by the browser's default form submission)
 searchButton.onclick = function() {
-    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
-    if (hiddenInputs.length >= 3) {
-        // Form will be submitted normally with hidden inputs containing symptom values
-        document.forms["yourFormName"].submit(); // Replace 'yourFormName' with the actual form name
-    }
 };
