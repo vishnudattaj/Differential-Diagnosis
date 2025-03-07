@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="symptomtemplate.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Diagnosis</title>
+</head>
+<body>
+    <div class="container">
+        <h1>You have: Varicose Veins</h1> <h1>&#128516;</h1>
+        <h3>Symptoms:</h3>
+        <ul>
+            <li>Swollen, twisted veins</li><li>Heavy or aching legs</li><li>Skin discoloration</li><li>Itching or burning sensation</li><li>Leg cramps</li><li>Swelling in lower legs</li>
+        </ul>
+
+        <h3>Treatment:</h3>
+        <p>Consult your healthcare provider for appropriate treatment options.</p>
+
+        <p>For more detailed information, consult your healthcare provider.</p>
+
+        <a href="{{ url_for('protected') }}">Back to your profile</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
+    <nav>
+        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a href="{{ url_for('contact') }}">Contact Us</a>
+    </nav>
+</footer>
+</html>
