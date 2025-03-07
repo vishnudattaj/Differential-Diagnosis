@@ -31,7 +31,8 @@ class SymptomSubmission(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/randomForestModel.joblib")
+xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/xgboostModel.joblib")
+encoder = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/label_encoder.joblib")
 
 @login_manager.user_loader
 def user_loader(username):
@@ -105,11 +106,13 @@ def home():
             if column in symptoms:
                 userSymptoms.loc[0, column] = 1
         
-        disease_prediction = xgb.predict(userSymptoms)
-        print("Predicted disease:", disease_prediction[0])
-        disease_prediction = disease_prediction[0].replace(" ", "_")
-        return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{disease_prediction}.html")
-    return render_template('homepage.html')
+        predicted_encoded = xgb.predict(userSymptoms)
+
+        predicted_diseases = encoder.inverse_transform(predicted_encoded)
+        print(predicted_diseases)
+        return render_template('homepage.html')
+    else:
+        return render_template('homepage.html')
 
 if __name__ == '__main__':
     with app.app_context():

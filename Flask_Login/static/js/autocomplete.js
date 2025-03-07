@@ -133,13 +133,15 @@ let availableKeywords = [
     "Yellow Crust Ooze"
 ]
 
-
 const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
 const clearButton = document.getElementById("clear-button");
 const searchButton = document.getElementById("search-button");
+
+// Disable the search button initially
+searchButton.disabled = true;
 
 // Update symptoms list on input
 inputBox.onkeyup = function() {
@@ -193,6 +195,7 @@ function addSymptomToList() {
         createHiddenInput(inputBox.value);
         
         inputBox.value = ""; // Clear the input box
+        updateSearchButtonState(); // Update the state of the search button
     }
 }
 
@@ -216,6 +219,7 @@ function createHiddenInput(symptom) {
 clearButton.onclick = function() {
     symptomsList.innerHTML = "";
     clearHiddenInputs();
+    updateSearchButtonState(); // Update the state of the search button
 };
 
 // Clear all hidden inputs (optional)
@@ -224,7 +228,17 @@ function clearHiddenInputs() {
     hiddenInputs.forEach(input => input.remove());
 }
 
+// Update the state of the search button
+function updateSearchButtonState() {
+    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
+    searchButton.disabled = hiddenInputs.length < 3;
+}
+
 // Submit the form (handled by the browser's default form submission)
 searchButton.onclick = function() {
-    // Form will be submitted normally with hidden inputs containing symptom values
+    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
+    if (hiddenInputs.length >= 3) {
+        // Form will be submitted normally with hidden inputs containing symptom values
+        document.forms["yourFormName"].submit(); // Replace 'yourFormName' with the actual form name
+    }
 };
