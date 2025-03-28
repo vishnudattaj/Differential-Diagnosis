@@ -124,7 +124,7 @@ def home():
         predicted_encoded = xgb.predict(userSymptoms)
         predicted_diseases = encoder.inverse_transform(predicted_encoded)
         print(predicted_diseases)
-        return render_template('{predicted_disease}.html')
+        return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{predicted_diseases[0]}.html")
     else:
         return render_template('homepage.html')
 
