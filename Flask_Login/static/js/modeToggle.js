@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const darkTheme = document.getElementById('dark-theme');
     const lightTheme = document.getElementById('light-theme');
 
-    // Get theme from localStorage (this happens immediately after login)
     const savedTheme = localStorage.getItem('theme') || 'dark';
 
     if (savedTheme === 'light') {
