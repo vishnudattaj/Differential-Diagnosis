@@ -35,7 +35,6 @@ model = xgb.XGBClassifier(
     random_state=42
 )
 
-print("Training XGBoost model...")
 model.fit(X_train, y_train_encoded)
 
 y_pred_encoded = model.predict(X_test)
