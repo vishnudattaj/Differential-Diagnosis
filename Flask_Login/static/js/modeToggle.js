@@ -18,9 +18,6 @@ document.addEventListener('DOMContentLoaded', function() {
         lightTheme.disabled = true;
     }
 
-    // Send the theme to the server immediately after login
-    updateThemeOnServer(savedTheme);
-
     // The rest of your toggle click handler
     toggle.addEventListener('click', function() {
         toggle.classList.toggle('light');
@@ -30,26 +27,5 @@ document.addEventListener('DOMContentLoaded', function() {
         lightTheme.disabled = !isLightTheme;
 
         localStorage.setItem('theme', isLightTheme ? 'light' : 'dark');
-
-        // Send theme change to server
-        updateThemeOnServer(isLightTheme ? 'light' : 'dark');
     });
-
-    // Function to update theme on server
-    function updateThemeOnServer(theme) {
-        fetch('/update_theme', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ theme: theme }),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Theme updated on server:', data.theme);
-        })
-        .catch(error => {
-            console.error('Error updating theme:', error);
-        });
-    }
 });
