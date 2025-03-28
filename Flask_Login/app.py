@@ -124,27 +124,9 @@ def home():
         predicted_encoded = xgb.predict(userSymptoms)
         predicted_diseases = encoder.inverse_transform(predicted_encoded)
         print(predicted_diseases)
-        return render_template('homepage.html')
+        return render_template('{predicted_disease}.html')
     else:
         return render_template('homepage.html')
-
-@app.route('/predict', methods=['POST'])
-def predict():
-    data = request.get_json()
-    symptoms = data.get("symptoms", [])
-
-    # Create a DataFrame for the user's symptoms
-    userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
-    for symptom in symptoms:
-        if symptom in column_names:
-            userSymptoms.loc[0, symptom] = 1
-
-    # Predict the disease
-    predicted_encoded = xgb.predict(userSymptoms)
-    predicted_disease = encoder.inverse_transform(predicted_encoded)[0]
-
-    # Return the predicted disease as a JSON response
-    return jsonify({"predicted_disease": predicted_disease})
 
 if __name__ == '__main__':
     with app.app_context():
