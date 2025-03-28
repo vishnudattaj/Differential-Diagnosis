@@ -6,21 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>You have: Bronchial Asthma</h1> <h1>&#128516;</h1>
+        <h1>You have: Bronchial Asthma</h1> 
+        <h1><img class = "disease-image" src = bronchial.png alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>Bronchial asthma is a chronic respiratory condition where the airways become inflamed and narrowed, leading to difficulty breathing. It is caused by a combination of genetic and environmental factors, such as allergens (pollen, dust, pet dander), respiratory infections, smoke, or pollution. During asthma attacks, the muscles around the airways tighten, and the lining becomes swollen, producing excess mucus. Common symptoms include wheezing, coughing, shortness of breath, and chest tightness. Asthma can be managed with medications and avoiding triggers.</p>
+        </div>
         <h3>Symptoms:</h3>
         <ul>
-            <li>Shortness of breath</li>
-            <li>Coughing, especially at night</li>
-            <li>Wheezing</li>
-            <li>Tightness in the chest</li>
-            <li>Increased mucus production</li>
+            <li class ="apple">Shortness of breath</li>
+            <li class ="apple">Coughing, especially at night</li>
+            <li class ="apple">Wheezing</li>
+            <li class ="apple">Tightness in the chest</li>
+            <li class ="apple">Increased mucus production</li>
         </ul>
 
         <h3>Treatment:</h3>
         <p>Inhalers (bronchodilators), corticosteroids, and avoiding asthma triggers. Long-term medication to prevent symptoms.</p>
+        <p>Ginger & Honey: Anti-inflammatory properties help relax airways.
+            Turmeric: Contains curcumin, which reduces inflammation in the lungs.
+            Garlic: May help clear mucus and reduce airway inflammation.
+            Black Seed Oil: Traditionally used for respiratory health.</p>
 
         <p>For more detailed information, consult your healthcare provider.</p>
 
@@ -29,12 +59,13 @@
 </body>
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
-    <nav>
-        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </footer>
-
+<script src="sticky.js"></script>
 </html>
+
