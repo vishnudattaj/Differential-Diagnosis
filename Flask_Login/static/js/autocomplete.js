@@ -137,7 +137,6 @@ const resultsBox = document.querySelector(".result-box");
 const inputBox = document.getElementById("input-box");
 const addSymptom = document.getElementById("add-button");
 const symptomsList = document.getElementById("listofsymptoms");
-const clearButton = document.getElementById("clear-button");
 const searchButton = document.getElementById("search-button");
 
 // Disable the search button initially
@@ -216,16 +215,22 @@ function createHiddenInput(symptom) {
 }
 
 // Clear symptoms list
-clearButton.onclick = function() {
-    symptomsList.innerHTML = "";
-    clearHiddenInputs();
-    updateSearchButtonState(); // Update the state of the search button
-};
+document.getElementById("clear-button").addEventListener("click", function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+    clearSymptoms(); // Call your custom clear function
+});
 
-// Clear all hidden inputs (optional)
-function clearHiddenInputs() {
+function clearSymptoms() {
+    // Clear the list of symptoms
+    const symptomsList = document.getElementById("listofsymptoms");
+    symptomsList.innerHTML = ""; // Clear all symptoms from the list
+
+    // Optionally, clear any hidden inputs or other form data
     const hiddenInputs = document.querySelectorAll('[type="hidden"]');
     hiddenInputs.forEach(input => input.remove());
+
+    // Update the state of the search button
+    updateSearchButtonState();
 }
 
 // Update the state of the search button
@@ -235,5 +240,61 @@ function updateSearchButtonState() {
 }
 
 // Submit the form (handled by the browser's default form submission)
-searchButton.onclick = function() {
+searchButton.onclick = async function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    // Get the list of symptoms
+    const symptoms = [];
+    const hiddenInputs = document.querySelectorAll('[type="hidden"]');
+    hiddenInputs.forEach(input => symptoms.push(input.value));
+
+    if (symptoms.length < 3) {
+        alert("Please add at least 3 symptoms before searching.");
+        return;
+    }
+
+    // Send symptoms to the backend
+    try {
+        const response = await fetch("/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ symptoms: symptoms })
+        });
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch prediction from the server.");
+        }
+
+        const data = await response.json();
+        displayResults(data.predicted_disease); // Display the predicted disease
+    } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred while fetching the prediction.");
+    }
 };
+
+// Function to display results dynamically
+function displayResults(predictedDisease) {
+    const resultsContainer = document.querySelector(".results-container");
+    const diseaseImage = document.getElementById("disease-image");
+
+    // Clear previous results
+    resultsContainer.innerHTML = "";
+
+    if (!predictedDisease) {
+        resultsContainer.innerHTML = "<p>No disease prediction available.</p>";
+        diseaseImage.style.display = "none"; // Hide the image
+        return;
+    }
+
+    // Display the predicted disease
+    const diseaseText = document.createElement("p");
+    diseaseText.style.fontSize = "45px";
+    diseaseText.innerHTML = `<strong>Most Likely Disease:</strong> ${predictedDisease}`;
+    resultsContainer.appendChild(diseaseText);
+
+    // Show the image
+    diseaseImage.style.display = "block";
+}

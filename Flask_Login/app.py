@@ -5,6 +5,7 @@ import joblib
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 import pandas as pd
+import os
 
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -31,8 +32,17 @@ class SymptomSubmission(db.Model):
 class User(flask_login.UserMixin):
     pass
 
-xgb = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/xgboostModel.joblib")
-encoder = joblib.load(filename="/workspaces/3rd-period-isp-differential-diagnosis/label_encoder.joblib")
+# Load the machine learning model and encoder
+model_path = os.path.join(os.path.dirname(__file__), "xgboostModel.joblib")
+encoder_path = os.path.join(os.path.dirname(__file__), "label_encoder.joblib")
+xgb = joblib.load(model_path)
+encoder = joblib.load(encoder_path)
+
+# Load the column names from the dataset
+csv_path = os.path.join(os.path.dirname(__file__), "Testing.csv")
+trainingdf = pd.read_csv(csv_path)
+column_names = trainingdf.columns.tolist()
+column_names.remove("Disease")  # Remove the "Disease" column
 
 @login_manager.user_loader
 def user_loader(username):
@@ -84,7 +94,7 @@ def signup():
         user = User()
         user.id = username
         flask_login.login_user(user)
-        return redirect(url_for('protected'))
+        return redirect(url_for('home'))  # Redirect to 'home'
 
     return render_template('signup.html')
 
@@ -97,7 +107,12 @@ def home():
             symptoms.append(request.form[f'symptom{i}'])
             i += 1
         
-        trainingdf = pd.read_csv("/workspaces/3rd-period-isp-differential-diagnosis/Flask_Login/Testing.csv")
+        # Construct the correct path for Testing.csv
+        csv_path = os.path.join(os.path.dirname(__file__), "Testing.csv")
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"CSV file not found at {csv_path}")
+        
+        trainingdf = pd.read_csv(csv_path)
         column_names = trainingdf.columns.tolist()
         userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
         userSymptoms.drop(columns=["Disease"], inplace=True)
@@ -107,23 +122,36 @@ def home():
                 userSymptoms.loc[0, column] = 1
         
         predicted_encoded = xgb.predict(userSymptoms)
-
         predicted_diseases = encoder.inverse_transform(predicted_encoded)
         print(predicted_diseases)
         return render_template('homepage.html')
     else:
         return render_template('homepage.html')
 
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.get_json()
+    symptoms = data.get("symptoms", [])
+
+    # Create a DataFrame for the user's symptoms
+    userSymptoms = pd.DataFrame(0, index=[0], columns=column_names)
+    for symptom in symptoms:
+        if symptom in column_names:
+            userSymptoms.loc[0, symptom] = 1
+
+    # Predict the disease
+    predicted_encoded = xgb.predict(userSymptoms)
+    predicted_disease = encoder.inverse_transform(predicted_encoded)[0]
+
+    # Return the predicted disease as a JSON response
+    return jsonify({"predicted_disease": predicted_disease})
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+    app.run(debug=True, port=5001)  # Explicitly set port
 
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
     return 'Logged out'
-
-
-if __name__ == '__main__':
-    app.run(debug=True, port=5001)  # Explicitly set port
