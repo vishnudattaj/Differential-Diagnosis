@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Past Diseases</title>
+    <link rel="stylesheet" href="past_diseases.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Past Diseases</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Disease</th>
+                    <th>Date Diagnosed</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for disease in diseases %}
+                <tr>
+                    <td>{{ disease.disease }}</td>
+                    <td>{{ disease.date_diagnosed }}</td>
+                    <td>{{ disease.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
