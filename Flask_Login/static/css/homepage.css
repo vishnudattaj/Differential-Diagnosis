@@ -452,10 +452,3 @@ nav.sticky
     padding: 20px;
     transition: 0.5s;
 }
-.predicted-disease {
-    font-size: 24px; /* Adjust the font size */
-    font-weight: bold;
-    color: red; /* Dark text color */
-    text-align: center;
-    margin: 20px 0;
-}
