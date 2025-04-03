@@ -30,7 +30,6 @@ class LoginScreen(db.Model):
 
     def set_data(self, data):
         current_data = self.get_data()
-        print(current_data['disease'])
         
         current_data['disease'].append(data['disease'])
         current_data['date'].append(data['date'])
@@ -140,8 +139,7 @@ def home():
         if user_entry:
             user_entry.set_data({"disease": predicted_diseases[0], "date": datetime.datetime.now().strftime("%x")})
             db.session.commit()
-        
-        print(user_entry.get_data())
+            
         return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{predicted_diseases[0]}.html")
     else:
         return render_template('homepage.html')
