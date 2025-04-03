@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 import pandas as pd
 import os
+import json
 
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
@@ -16,19 +17,29 @@ db = SQLAlchemy(app)
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
 
+import json
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usernames = db.Column(db.String(100), unique=True, nullable=False)
     passwords = db.Column(db.String(200), nullable=False)
+    disease_history = db.Column(db.Text, default=json.dumps({'disease': [], 'date': []}))
 
+    def set_data(self, data):
+        current_data = self.get_data()
+        print(current_data['disease'])
+        
+        current_data['disease'].append(data['disease'])
+        current_data['date'].append(data['date'])
+        
+        self.disease_history = json.dumps(current_data)
 
-class SymptomSubmission(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    symptoms = db.Column(db.String(500), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('login_screen.id'), nullable=False)
-
-
-
+    def get_data(self):
+        return json.loads(self.disease_history)
+    
 class User(flask_login.UserMixin):
     pass
 
@@ -123,10 +134,24 @@ def home():
         
         predicted_encoded = xgb.predict(userSymptoms)
         predicted_diseases = encoder.inverse_transform(predicted_encoded)
-        print(predicted_diseases)
+
+        user_entry = LoginScreen.query.filter_by(usernames=flask_login.current_user.id).first()
+
+        if user_entry:
+            user_entry.set_data({"disease": predicted_diseases[0], "date": datetime.datetime.now().strftime("%x")})
+            db.session.commit()
+        
+        print(user_entry.get_data())
         return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{predicted_diseases[0]}.html")
     else:
         return render_template('homepage.html')
+    
+@app.route('/disease_history', methods=['GET', 'POST'])
+def history():
+    user_entry = LoginScreen.query.filter_by(usernames=flask_login.current_user.id).first()
+    disease_history = user_entry.get_data()
+
+    return render_template('disease_history.html', disease_history=zip(disease_history['disease'], disease_history['date']))
 
 if __name__ == '__main__':
     with app.app_context():
