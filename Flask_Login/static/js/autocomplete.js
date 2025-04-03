@@ -241,7 +241,6 @@ function updateSearchButtonState() {
 
 // Submit the form (handled by the browser's default form submission)
 searchButton.onclick = async function(event) {
-    event.preventDefault(); // Prevent the default form submission
 
     // Get the list of symptoms
     const symptoms = [];
@@ -251,27 +250,6 @@ searchButton.onclick = async function(event) {
     if (symptoms.length < 3) {
         alert("Please add at least 3 symptoms before searching.");
         return;
-    }
-
-    // Send symptoms to the backend
-    try {
-        const response = await fetch("/predict", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ symptoms: symptoms })
-        });
-
-        if (!response.ok) {
-            throw new Error("Failed to fetch prediction from the server.");
-        }
-
-        const data = await response.json();
-        displayResults(data.predicted_disease); // Display the predicted disease
-    } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred while fetching the prediction.");
     }
 };
 
