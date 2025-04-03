@@ -155,3 +155,5 @@ if __name__ == '__main__':
 def logout():
     flask_login.logout_user()
     return 'Logged out'
+
+
