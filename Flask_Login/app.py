@@ -137,7 +137,7 @@ def home():
         user_entry = LoginScreen.query.filter_by(usernames=flask_login.current_user.id).first()
 
         if user_entry:
-            user_entry.set_data({"disease": predicted_diseases[0], "date": datetime.datetime.now().strftime("%x")})
+            user_entry.set_data({"disease": predicted_diseases[0], "date": datetime.datetime.now().strftime("%m/%d/%Y")})
             db.session.commit()
             
         return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{predicted_diseases[0]}.html")
