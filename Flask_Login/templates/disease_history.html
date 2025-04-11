@@ -4,20 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disease History</title>
+    <!-- Add Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Add Font Awesome -->
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: "Montserrat", sans-serif;
+        }
+        
+        html {
+            scroll-behavior: smooth;
         }
         
         body {
             background-color: #f9f9f9;
             color: #333;
             line-height: 1.6;
+            max-width: 100%;
+            margin: 0;
+            padding: 0;
         }
         
+        /* Navbar styling - copied from homepage CSS */
         nav {
             display: flex;
             justify-content: space-between;
@@ -39,6 +56,15 @@
             margin: 0%;
             width: 98%;
             border-radius: 0px;
+        }
+
+        @keyframes thump {
+            0%, 100% {
+                transform: scale(1);
+            }
+            10% {
+                transform: scale(1.2);
+            }
         }
 
         .transparentLogo {
@@ -77,14 +103,30 @@
             transition: transform 2s;
         }
 
+        /* Added hover underline effect from homepage CSS */
+        .nav-links ul li::after {
+            content: '';
+            width: 0%;
+            height: 2px;
+            background: #fa9696;
+            display: block;
+            margin: auto;
+            transition: 0.5s;
+        }
+        
+        .nav-links ul li:hover::after {
+            width: 100%;
+        }
+        
         .nav-links ul li:hover a {
             color: #fa9696;
             transition: 0.5s;
         }
 
+        /* Rest of your disease history page styling */
         .container {
             max-width: 1200px;
-            margin: 2rem auto;
+            margin: 120px auto 2rem; /* Added top margin to account for fixed navbar */
             padding: 0 2rem;
         }
         
@@ -100,10 +142,7 @@
         }
         
         .disease-list {
-            display: flex;
             display: grid;
-            flex-wrap:wrap;
-            justify-content: center;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 2rem;
         }
@@ -142,12 +181,30 @@
             margin-top: 2rem;
         }
         
+        .add-card-button {
+            margin: 20px auto;
+            padding: 10px 20px;
+            display: block;
+            background-image: linear-gradient(to right, #fa9696, #f3a3f9);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: 0.5s;
+        }
+
+        .add-card-button:hover {
+            animation: thump 1s infinite;
+        }
+        
         @media (max-width: 768px) {
             .disease-list {
                 grid-template-columns: 1fr;
             }
             
-            .navbar {
+            nav {
                 flex-direction: column;
                 padding: 1rem;
             }
@@ -158,40 +215,20 @@
                 justify-content: space-around;
             }
             
-            .nav-links li {
+            .nav-links ul li {
                 margin-left: 0;
             }
-        }
-
-        .add-card-button {
-            margin: 20px auto;
-            padding: 10px 20px;
-            display: block;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 200px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
-
-        .add-card-button:hover {
-            background-color: #2874a6; /* Darker blue on hover */
         }
     </style>
 </head>
 <body>
     <nav id="navbar">
-        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
-            <img class="transparentLogo" src="../static/img/Differential_Diagnosis_Logo-removebg-preview.png" alt="Differential Diagnosis Logo">
-        </a>
+        <img class="transparentLogo" src="{{ url_for('static', filename='img/Differential_Diagnosis_Logo-removebg-preview.png') }}">
         <div class="nav-links">
             <ul>
                 <li><a href="/home">HOME</a></li>
                 <li><a href="">ABOUT</a></li>
-                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="/disease_history">YOUR DISEASES</a></li>
                 <li><a href="">SETTINGS</a></li>
                 <li><a href="">CONTACT</a></li>
             </ul>
@@ -215,8 +252,11 @@
         <button class="add-card-button">
             Add New Disease
         </button>
-        <img src="../static/img/housemd.jpg" alt="Footer Image" class="footer-image">
+        <img src="{{ url_for('static', filename='img/housemd.jpg') }}" alt="Footer Image" class="footer-image">
     </div>
-    <script src = "../static/js/new_disease.js"></script>
+    
+    <!-- Add the same scripts as the homepage -->
+    <script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/new_disease.js') }}"></script>
 </body>
 </html>
