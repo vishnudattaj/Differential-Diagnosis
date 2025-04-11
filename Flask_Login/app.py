@@ -12,15 +12,12 @@ app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
 app.secret_key = '6LcYcEohAAAAAJ5JeDLnVKReHLj0ZIkeo7FgilZB'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///login.db'
+
+# Initialize SQLAlchemy with the app
 db = SQLAlchemy(app)
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
-
-import json
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
 
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,15 +27,13 @@ class LoginScreen(db.Model):
 
     def set_data(self, data):
         current_data = self.get_data()
-        
         current_data['disease'].append(data['disease'])
         current_data['date'].append(data['date'])
-        
         self.disease_history = json.dumps(current_data)
 
     def get_data(self):
         return json.loads(self.disease_history)
-    
+
 class User(flask_login.UserMixin):
     pass
 
@@ -63,10 +58,6 @@ def user_loader(username):
     user.id = username
     return user
 
-with app.app_context():
-    db.create_all()
-    db.session.commit()
-
 @app.route('/', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -75,10 +66,16 @@ def login():
         user_entry = LoginScreen.query.filter_by(usernames=username).first()
 
         if user_entry and check_password_hash(user_entry.passwords, password):
+            # Ensure the disease_history column is initialized
+            if not hasattr(user_entry, 'disease_history') or not user_entry.disease_history:
+                user_entry.disease_history = json.dumps({'disease': [], 'date': []})
+                db.session.commit()
+
             user = User()
             user.id = username
             flask_login.login_user(user)
             return redirect(url_for('home'))
+        
         return render_template('wrongCredentials.html')
     return render_template('login.html')
 
@@ -151,14 +148,14 @@ def history():
 
     return render_template('disease_history.html', disease_history=zip(disease_history['disease'], disease_history['date']))
 
-if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True, port=5001)  # Explicitly set port
-
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
     return 'Logged out'
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True, port=5001)  # Explicitly set port
 
 

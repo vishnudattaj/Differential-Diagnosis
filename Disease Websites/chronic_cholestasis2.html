@@ -1,0 +1,101 @@
+Disease Websites/Chronic_Cholestasis copy.html<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" href="symptomtemplate.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h1>You have: Chronic Cholestasis</h1> 
+        <h1><img class = "disease-image" src = cholestasis.jpg alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>Chronic cholestasis is a long-term condition where the flow of bile from the liver is reduced or blocked. Bile is essential for digestion and absorption of fats and fat-soluble vitamins (A, D, E, K). When bile builds up, it can damage liver cells and lead to scarring or cirrhosis.</p>
+        </div>
+        <h3>Symptoms:</h3>
+        <ul>
+            <li class ="apple">Yellowing of the skin and eyes (jaundice)</li>
+            <li class ="apple">Itchy skin</li>
+            <li class ="apple">Fatigue</li>
+            <li class ="apple">Pain in the upper right side of the abdomen</li>
+            <li class ="apple">Dark urine</li>
+            <li class ="apple">Pale stools</li>
+        </ul>
+        <h3>Causes:</h3>
+        <ul>
+            <li class ="apple">Primary biliary cholangitis (PBC) – autoimmune destruction of bile ducts</li>
+            <li class ="apple">Primary sclerosing cholangitis (PSC) – inflammation and scarring of bile ducts</li>
+            <li class ="apple">Bile duct obstruction – from gallstones, tumors, or strictures</li>
+            <li class ="apple">Certain medications – like anabolic steroids or antibiotics</li>
+            <li class ="apple">Genetic/metabolic conditions – e.g., Alagille syndrome, cystic fibrosis</li>
+        </ul>
+
+        <h3>Treatment:</h3>
+        <p>Ursodeoxycholic acid (UDCA) – helps bile flow better and slows liver damage
+
+            Obeticholic acid – for patients who don’t respond to UDCA (especially in PBC)
+            
+            Cholestyramine – relieves itching by binding bile acids in the gut
+            
+            Rifampin – antibiotic with antipruritic effects
+            
+            Antihistamines – sometimes used to ease itching
+            
+            Fat-soluble vitamin supplements (A, D, E, K) – to correct deficiencies
+            
+            Corticosteroids or immunosuppressants – used in certain autoimmune forms
+            
+            </p>
+        <p>Milk Thistle (Silymarin) – antioxidant properties may help protect liver cells
+
+            Dandelion Root – traditionally used to support bile flow
+            
+            Artichoke Leaf Extract – may support liver and bile production
+            
+            Omega-3 fatty acids – reduce liver inflammation (from flaxseed or fish oil)
+            
+            Turmeric (Curcumin) – anti-inflammatory, supports liver function
+            
+            Probiotics – help improve gut-liver interaction and reduce toxin buildup</p>
+
+        <p>For more detailed information, consult your healthcare provider.</p>
+
+        <a href="{{ url_for('protected') }}">Back to your profile</a>
+    </div>
+</body>
+<footer>
+    <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
+    </nav>
+</footer>
+<script src="sticky.js"></script>
+</html>
+
