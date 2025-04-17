@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", function () {
             date: diseaseDate
         };
 
-        // Send the data to the server using fetch API
         fetch('/add_disease', {
             method: 'POST',
             headers: {
