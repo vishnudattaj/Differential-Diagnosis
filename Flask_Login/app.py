@@ -29,13 +29,64 @@ class LoginScreen(db.Model):
 
     def set_data(self, data):
         current_data = self.get_data()
+<<<<<<< HEAD
         current_data['disease'].append(data['disease'])
         current_data['date'].append(data['date'])
+=======
+        
+        # Add the new disease and date at the beginning
+        current_data['disease'].insert(0, data['disease'])
+        current_data['date'].insert(0, data['date'])
+        
+        # Convert string dates to datetime objects for sorting
+        date_objects = []
+        for date_str in current_data['date']:
+            try:
+                # Parse the MM/DD/YYYY format
+                date_obj = datetime.datetime.strptime(date_str, "%m/%d/%Y")
+                date_objects.append(date_obj)
+            except ValueError:
+                # If parsing fails, use a very old date
+                date_objects.append(datetime.datetime(1900, 1, 1))
+        
+        # Sort diseases and dates based on dates (most recent first)
+        sorted_indices = sorted(range(len(date_objects)), key=lambda i: date_objects[i], reverse=True)
+        
+        sorted_diseases = [current_data['disease'][i] for i in sorted_indices]
+        sorted_dates = [current_data['date'][i] for i in sorted_indices]
+        
+        # Update the data with sorted lists
+        current_data['disease'] = sorted_diseases
+        current_data['date'] = sorted_dates
+        
+>>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
         self.disease_history = json.dumps(current_data)
 
     def get_data(self):
         return json.loads(self.disease_history)
+<<<<<<< HEAD
 
+=======
+    
+    def remove_duplicates(self):
+        current_data = self.get_data()
+
+        # Use a set to track unique (disease, date) pairs while maintaining order
+        seen = set()
+        unique_diseases = []
+        unique_dates = []
+
+        for disease, date in zip(current_data['disease'], current_data['date']):
+            if (disease, date) not in seen:
+                seen.add((disease, date))
+                unique_diseases.append(disease)
+                unique_dates.append(date)
+
+        # Update the stored disease history
+        self.disease_history = json.dumps({'disease': unique_diseases, 'date': unique_dates})
+
+    
+>>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
 class User(flask_login.UserMixin):
     pass
 
@@ -152,6 +203,24 @@ def history():
 
     return render_template('disease_history.html', disease_history=zip(disease_history['disease'], disease_history['date']))
 
+@app.route('/add_disease', methods=['POST'])
+@flask_login.login_required
+def add_disease():
+    # Get the data from the request
+    data = request.json
+    
+    # Get the current user
+    user_entry = LoginScreen.query.filter_by(usernames=flask_login.current_user.id).first()
+    
+    if user_entry:
+        # Add the disease to the user's history
+        user_entry.set_data(data)
+        user_entry.remove_duplicates()
+        db.session.commit()
+        return jsonify({"status": "success"})
+    
+    return jsonify({"status": "error", "message": "User not found"}), 404
+
 @app.route('/logout')
 def logout():
     flask_login.logout_user()
@@ -163,3 +232,5 @@ if __name__ == '__main__':
     app.run(debug=True, port=5001)  # Explicitly set port
 
 
+=======
+>>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
