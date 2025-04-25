@@ -183,7 +183,7 @@ def home():
             user_entry.remove_duplicates()
             db.session.commit()
             
-        return send_file(f"/workspaces/3rd-period-isp-differential-diagnosis/Disease Websites/{predicted_diseases[0]}.html")
+        return render_template(f"{predicted_diseases[0]}.html")
     else:
         return render_template('homepage.html')
     
@@ -215,7 +215,7 @@ def add_disease():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True, port=5001)  # Explicitly set port
+    app.run(debug=True)
 
 @app.route('/logout')
 def logout():
