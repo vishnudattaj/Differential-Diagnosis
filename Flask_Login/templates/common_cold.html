@@ -109,12 +109,14 @@
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
     <nav id="footer-nav">
-        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
+        <a class="banana" href="">Privacy Policy</a> |
+        <a class="banana" href="">Terms of Service</a> |
+        <a class="banana" href="">Disclaimer</a> |
+        <a class="banana" href="">Contact Us</a>
     </nav>
 </footer>
-<script src="sticky.js"></script>
+<script src="{{ url_for('static', filename='js/sticky.js') }}"></script>
 </html>
+
+
 
