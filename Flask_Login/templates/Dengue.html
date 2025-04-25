@@ -6,22 +6,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
+    <nav class ="navbar">
+        <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
+            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+        </a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="">HOME</a></li>
+                <li><a href="">ABOUT</a></li>
+                <li><a href="">YOUR DISEASES</a></li>
+                <li><a href="">SETTINGS</a></li>
+                <li><a href="">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="container">
-        <h1>You have: Dengue</h1> <h1>&#128516;</h1>
+        <h1>You have: Dengue</h1> 
+        <h1><img class = "disease-image" src = dengue.jpg alt ="Disease-image"> </h1>
+        <div class = "description">
+            <h1>Description:</h1>
+            <p>COVID-19 (Coronavirus Disease 2019) is a respiratory illness caused by the SARS-CoV-2 virus. It was first identified in December 2019 and led to a global pandemic.
+
+                COVID-19 symptoms range from mild to severe and can affect multiple organs. Some people recover quickly, while others develop serious complications like pneumonia or long-term effects (Long COVID).</p>
+        </div>
         <h3>Symptoms:</h3>
         <ul>
-            <li>High fever</li>
-            <li>Severe headache</li>
-            <li>Joint and muscle pain</li>
-            <li>Skin rash</li>
-            <li>Bleeding gums or nosebleeds</li>
-            <li>Fatigue</li>
+            <li class ="apple">High fever</li>
+            <li class ="apple">Severe headache</li>
+            <li class ="apple">Joint and muscle pain</li>
+            <li class ="apple">Skin rash</li>
+            <li class ="apple">Bleeding gums or nosebleeds</li>
+            <li class ="apple">Fatigue</li>
         </ul>
+        <h3>Causes:</h3>
+        <ul>
+            <li class ="apple">Dengue virus (flavivirus family)</li>
+        </ul>   
 
         <h3>Treatment:</h3>
-        <p>There is no specific antiviral treatment. Supportive care includes hydration, fever control, and pain relief. Avoid aspirin or NSAIDs.</p>
+        <p>There’s no specific antiviral treatment for dengue. Care focuses on supportive measures:
+
+            Pain relievers and fever reducers:
+            
+            Acetaminophen (Tylenol) – safe choice for fever and pain
+            
+            ⚠️ Avoid:
+            
+            NSAIDs like ibuprofen (Advil) and aspirin — these can worsen bleeding.
+            
+            Fluids:
+            
+            Oral rehydration salts (ORS)
+            
+            IV fluids in severe cases to prevent dehydration and shock
+            
+            Hospitalization:
+            
+            Needed for severe dengue (monitoring blood pressure, platelet counts, fluid levels)
+            </p>
+        <p>Papaya leaf extract – some evidence it may help raise platelet counts (studies ongoing; needs doctor’s supervision)
+
+            Giloy (Tinospora cordifolia) – traditional herb thought to boost immunity and help reduce fever
+            
+            Coconut water – helps with hydration and electrolyte balance
+            
+            Pomegranate and beetroot juices – rich in antioxidants and may support blood health
+            
+            Turmeric milk – traditional remedy for boosting immunity and reducing inflammation
+            
+            Rest and nutrition – very important for recovery; eat easily digestible, nutritious foods</p>
 
         <p>For more detailed information, consult your healthcare provider.</p>
 
@@ -30,11 +92,13 @@
 </body>
 <footer>
     <p>&copy; 2025 Differential Diagnosis Goats. All rights reserved.</p>
-    <nav>
-        <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
-        <a href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
-        <a href="{{ url_for('disclaimer') }}">Disclaimer</a> |
-        <a href="{{ url_for('contact') }}">Contact Us</a>
+    <nav id="footer-nav">
+        <a class="banana" href="{{ url_for('privacy_policy') }}">Privacy Policy</a> |
+        <a class="banana" href="{{ url_for('terms_of_service') }}">Terms of Service</a> |
+        <a class="banana" href="{{ url_for('disclaimer') }}">Disclaimer</a> |
+        <a class="banana" href="{{ url_for('contact') }}">Contact Us</a>
     </nav>
 </footer>
+<script src="sticky.js"></script>
 </html>
+
