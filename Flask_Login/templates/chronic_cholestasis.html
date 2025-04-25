@@ -1,22 +1,22 @@
-Disease Websites/Chronic_Cholestasis copy.html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" type="text/css" href="symptomtemplate.css">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Template Diagnosis</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/symptomtemplate.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="alternate stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="alternate stylesheet">
 
     <script src="https://kit.fontawesome.com/d6b350c714.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <nav class ="navbar">
         <a href="http://127.0.0.1:5500/realhomepage/homepage.html">
-            <img class="transparentLogo" src="Differential Diagnosis Logo.png" alt="Differential Diagnosis Logo">
+            <img class="transparentLogo" src="{{ url_for('static', filename='img/Differential Diagnosis Logo.png') }}" alt="Differential Diagnosis Logo">
         </a>
         <div class="nav-links">
             <ul>

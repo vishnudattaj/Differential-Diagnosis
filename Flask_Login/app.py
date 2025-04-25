@@ -7,19 +7,20 @@ import datetime
 import pandas as pd
 import os
 import json
-from flask_migrate import Migrate
 
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
 app.secret_key = '6LcYcEohAAAAAJ5JeDLnVKReHLj0ZIkeo7FgilZB'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///login.db'
-
-# Initialize SQLAlchemy with the app
 db = SQLAlchemy(app)
-migrate = Migrate(app, db)
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
+
+import json
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,10 +30,6 @@ class LoginScreen(db.Model):
 
     def set_data(self, data):
         current_data = self.get_data()
-<<<<<<< HEAD
-        current_data['disease'].append(data['disease'])
-        current_data['date'].append(data['date'])
-=======
         
         # Add the new disease and date at the beginning
         current_data['disease'].insert(0, data['disease'])
@@ -59,14 +56,10 @@ class LoginScreen(db.Model):
         current_data['disease'] = sorted_diseases
         current_data['date'] = sorted_dates
         
->>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
         self.disease_history = json.dumps(current_data)
 
     def get_data(self):
         return json.loads(self.disease_history)
-<<<<<<< HEAD
-
-=======
     
     def remove_duplicates(self):
         current_data = self.get_data()
@@ -86,7 +79,6 @@ class LoginScreen(db.Model):
         self.disease_history = json.dumps({'disease': unique_diseases, 'date': unique_dates})
 
     
->>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
 class User(flask_login.UserMixin):
     pass
 
@@ -104,12 +96,16 @@ column_names.remove("Disease")  # Remove the "Disease" column
 
 @login_manager.user_loader
 def user_loader(username):
-    user_entry = LoginScreen.query.filter_by(usernames=username).first()
-    if not user_entry:
-        return None
+    if username not in username:
+        return
+
     user = User()
     user.id = username
     return user
+
+with app.app_context():
+    db.create_all()
+    db.session.commit()
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -119,16 +115,10 @@ def login():
         user_entry = LoginScreen.query.filter_by(usernames=username).first()
 
         if user_entry and check_password_hash(user_entry.passwords, password):
-            # Ensure the disease_history column is initialized
-            if not user_entry.disease_history:
-                user_entry.disease_history = json.dumps({'disease': [], 'date': []})
-                db.session.commit()
-
             user = User()
             user.id = username
             flask_login.login_user(user)
             return redirect(url_for('home'))
-        
         return render_template('wrongCredentials.html')
     return render_template('login.html')
 
@@ -190,6 +180,7 @@ def home():
 
         if user_entry:
             user_entry.set_data({"disease": predicted_diseases[0], "date": datetime.datetime.now().strftime("%m/%d/%Y")})
+            user_entry.remove_duplicates()
             db.session.commit()
             
         return render_template(f"{predicted_diseases[0]}.html")
@@ -221,16 +212,13 @@ def add_disease():
     
     return jsonify({"status": "error", "message": "User not found"}), 404
 
-@app.route('/logout')
-def logout():
-    flask_login.logout_user()
-    return redirect(url_for('login'))
-
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
 
+@app.route('/logout')
+def logout():
+    flask_login.logout_user()
+    return 'Logged out'
 
-=======
->>>>>>> 25c275549281012cf38a5e29f6560f1ca4d8c789
