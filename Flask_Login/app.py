@@ -20,8 +20,6 @@ login_manager.init_app(app)
 import json
 from flask_sqlalchemy import SQLAlchemy
 
-db = SQLAlchemy()
-
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usernames = db.Column(db.String(100), unique=True, nullable=False)
