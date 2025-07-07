@@ -23,7 +23,7 @@ The disease prediction engine is powered by an **XGBoost classifier** trained on
 ## 👥 Team Contributions
 
 - **Vishnu**  
-  Developed the machine learning model and and handled much of the Flask backend integration.
+  Developed the machine learning model and and handled majority of the Flask backend integration.
 
 - **Zong**  
   Contributed extensively to Flask development and created most of the disease templates diisplayed after diagnosing the user.
