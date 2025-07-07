@@ -2,6 +2,8 @@
 
 **Differential Diagnosis** is a full-stack web application that predicts potential diseases based on user-reported symptoms. Built with Flask, Python, JavaScript, and CSS, the platform integrates a machine learning model to deliver real-time diagnostic feedback and allows users to maintain a personal history of illnesses. The app features secure login functionality to ensure data privacy and personalized access.
 
+**Link to Demo:** [Link](https://youtu.be/ra71DG-NXfE)
+
 ## 🚀 Features
 
 - **Symptom-Based Disease Prediction**  
