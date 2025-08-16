@@ -9,16 +9,13 @@ import os
 import json
 
 app = Flask(__name__)
-app.config['RECAPTCHA_S8ITE_KEY'] = '6LcYcEohAAAAANVL5nwJ25oOM488BPaC9bujC-94'
-app.secret_key = '6LcYcEohAAAAAJ5JeDLnVKReHLj0ZIkeo7FgilZB'
+app.config['RECAPTCHA_S8ITE_KEY'] = os.getenv('RECAPTCHA_S8ITE_KEY')
+app.secret_key = os.getenv('FLASK_SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///login.db'
 db = SQLAlchemy(app)
 
 login_manager = flask_login.LoginManager()
 login_manager.init_app(app)
-
-import json
-from flask_sqlalchemy import SQLAlchemy
 
 class LoginScreen(db.Model):
     id = db.Column(db.Integer, primary_key=True)
