@@ -7,7 +7,9 @@ import datetime
 import pandas as pd
 import os
 import json
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
 app.config['RECAPTCHA_S8ITE_KEY'] = os.getenv('RECAPTCHA_S8ITE_KEY')
 app.secret_key = os.getenv('FLASK_SECRET_KEY')

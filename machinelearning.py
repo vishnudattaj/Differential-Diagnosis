@@ -6,8 +6,8 @@ from sklearn.preprocessing import LabelEncoder
 import xgboost as xgb
 import joblib
 
-testing = pd.read_csv("/workspaces/Differential-Diagnosis/Flask_Login/Testing.csv")
-training = pd.read_csv("/workspaces/Differential-Diagnosis/Flask_Login/Training.csv")
+testing = pd.read_csv("Testing.csv")
+training = pd.read_csv("Training.csv")
 
 X_train = training.iloc[:, 0:132]
 y_train = training.iloc[:, 132]
@@ -44,5 +44,5 @@ print(f"Test accuracy: {accuracy:.4f}")
 print("Classification report:")
 print(classification_report(y_test, y_pred))
 
-joblib.dump(model, filename="/workspaces/Differential-Diagnosis/Flask_Login/xgboostModel.joblib")
-joblib.dump(label_encoder, filename="/workspaces/Differential-Diagnosis/Flask_Login/label_encoder.joblib")
+joblib.dump(model, filename="xgboostModel.joblib")
+joblib.dump(label_encoder, filename="label_encoder.joblib")
