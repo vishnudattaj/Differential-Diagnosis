@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: Differential-Diagnosis
+    env: python
+    pythonVersion: 3.10
+    buildCommand: pip install --no-build-isolation -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT
