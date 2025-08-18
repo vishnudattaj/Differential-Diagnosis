@@ -4,7 +4,7 @@
 
 **Link to [Demo](https://youtu.be/ra71DG-NXfE)** 
 
-**Link to [Website](https://differential-diagnosis.onrender.com/):**
+**Link to [Website](https://differential-diagnosis.onrender.com/)**
 
 ## 🚀 Features
 
